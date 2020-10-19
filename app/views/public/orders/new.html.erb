@@ -1,0 +1,30 @@
+<h3><span style="background-color: gray;">注文情報入力</span></h3>
+<%= form_with model: @order, url: orders_log_path, local: true do |f| %>
+  <h3>支払方法</h3>
+  <%= f.radio_button :how_to_pay, :"クレジットカード", checked: true %>
+  <%= f.label :how_to_pay_クレジットカード, "クレジットカード" %>
+  <%= f.radio_button :how_to_pay, :"銀行振込" %>
+  <%= f.label :how_to_pay_銀行振込, "銀行振込" %>
+
+  <h3>お届け先</h3>
+  <%= f.radio_button :address_select, "1", checked: true %>
+  <%= f.label :address_select_1, "ご自身の住所" %>
+  <br>
+  <%= current_customer.postcode %> <%= current_customer.address %><br><%= current_customer.full_name %>
+  <br>
+  <%= f.radio_button :address_select, "2" %>
+  <%= f.label :adderss_select_2, "登録済み住所から選択" %>
+  <br>
+  <%= f.select :address_where, options_for_select(Delivery.for_select(current_customer)) %>
+  <br>
+  <%= f.radio_button :address_select, "3" %>
+
+  <%= f.label :address_select_3, "新しいお届け先", class: "remote-input", remote: true %>
+    <%= f.label :postcode, "郵便番号(ハイフンなし)" %>
+    <%= f.text_field :postcode, disabled: true %><br>
+    <%= f.label :address, "住所" %>
+    <%= f.text_field :address, disabled: true %>
+    <%= f.label :name, "宛名" %> 
+    <%= f.text_field :name, disabled: true %>
+  <%= f.submit "確認画面へ進む", class: "btn btn-primary"%>
+<% end %>

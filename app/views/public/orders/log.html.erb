@@ -1,0 +1,50 @@
+<div class="col-md-12">
+  <h3>注文情報確認</h3>
+  <div class="row">
+    <div class="col-md-9">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>商品名</th><th>単価(税込)</th><th>数量</th><th>小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <%= render @order_items %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="col-md-3">
+      <table class="table">
+        <tr><th>送料</th><td><%= @order.deliver_fee %></td></tr>
+        <tr><th>商品合計</th><td><%= @order.total_price %></td></tr>
+        <tr><th>請求金額</th><td><%= @order.get_whole_total_price %></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2">
+      <h3>支払方法</h3>
+    </div>
+    <div class="col-md-10">
+      <h3 style="font-size: 15px;"><%= @order.how_to_pay %></h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2">
+      <h3>お届け先</h3>
+    </div>
+    <div class="col-md-10">
+      <h3 style="font-size: 15px;"><%= @order.deliver_show %></h3>
+    </div>
+  </div>
+
+  <%= form_with model: @order, local: true do |f| %>
+    <%= f.submit "購入を確定する", class: "btn btn-primary" %>
+  <% end %>
+
+</div>

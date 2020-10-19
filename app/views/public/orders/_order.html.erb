@@ -1,0 +1,12 @@
+<tr>
+  <td><%= order.date_show %></td>
+  <td><%= order.deliver_show %></td>
+  <td>
+    <% order.order_items.each do |order_item| %>
+      <%= order_item.item.name %>  
+    <% end %>
+  </td>
+  <td><%= order.get_whole_total_price %></td>
+  <td><%= order.status %></td>
+  <td><%= link_to "表示する", order_path(order) %></td>
+</tr>

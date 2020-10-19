@@ -1,0 +1,28 @@
+<h3>ショッピングカート</h3><%= link_to "カートを空にする", cart_items_all_path, method: :delete, class: "btn btn-danger"  %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>商品名</th><th>単価(税込)</th><th>数量</th><th>小計</th><th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @cart_items %>
+  </tbody>
+</table>
+
+<div class="row">
+  <div class="col-md-3">
+    <%= link_to "買い物を続ける", items_path, class: "btn btn-primary" %>
+  </div>
+  <div class="col-md-9">
+    <table class="table ml-auto">
+      <tr><th>ご受け金額</th><td><%= CartItem.total_price_with_tax(current_customer) %></td></tr>
+    </table>
+  </div>
+</div>
+<% if current_customer.cart_items.any? %>
+  <%= link_to "情報入力に進む", new_order_path, class: "btn btn-success" %>
+<% else %>
+  <%= link_to "情報入力に進む", new_order_path, class: "btn btn-success", disabled: true %>
+<% end %>
+

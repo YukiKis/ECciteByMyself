@@ -1,0 +1,79 @@
+<div class="col-md-10">
+  <h3><span style="background-color: gray;">登録情報編集</span></h3>
+
+  <%= form_with model: @customer, url: customers_path, local: true do |f| %>
+    <div class="row">
+      <div class="col-md-4">
+        <%= f.label :last_name, "名前" %>
+      </div>
+      <div class="col-md-4">
+        <%= f.label :last_name, "(姓)" %>
+        <%= f.text_field :last_name %>
+      </div>
+      <div class="col-md-4">
+        <%= f.label :first_name, "(名)"%>
+        <%= f.text_field :first_name %>
+      </div>
+    </div>    
+    
+    <div class="row">
+      <div class="col-md-4">
+        <%= f.label :last_name_kana, "フリガナ" %>
+      </div>
+      <div class="col-md-4">
+        <%= f.label :last_name_kana, "(セイ)" %>
+        <%= f.text_field :last_name_kana %>
+      </div>
+      <div class="col-md-4">
+        <%= f.label :first_name_kana_kana, "(メイ)"%>
+        <%= f.text_field :first_name_kana %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <%= f.label :email, "メールアドレス" %>
+      </div>
+      <div class="col-md-4">
+        <%= f.text_field :email %>
+      </div>
+      <div class="col-md-4">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <%= f.label :postcode, "郵便番号(ハイフンなし)" %>
+      </div>
+      <div class="col-md-4">
+        <%= f.text_field :postcode %>
+      </div>
+      <div class="col-md-4">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <%= f.label :address, "住所" %>
+      </div>
+      <div class="col-md-4">
+        <%= f.text_field :address %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <%= f.label :tel, "電話番号(ハイフンなし)" %>
+      </div>
+      <div class="col-md-4">
+        <%= f.text_field :tel %>
+      </div>
+      <div class="col-md-4">
+      </div>
+    </div>
+
+  <%= f.submit "編集を保存する", class: "btn btn-primary"%>
+  <% end %>
+
+  <%= link_to "退会する", customers_quit_path, class: "btn btn-danger" %>
+</div>

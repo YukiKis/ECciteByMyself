@@ -1,0 +1,55 @@
+<h2><span style="background-color: gray;">新規会員登録</span></h2>
+
+<%= form_with model: @customer, url: customer_registration_path, id: "new_customer", id: "new_customer", local: true do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label :last_name, "名前" %>
+    <%= f.text_field :last_name %>
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name_kana, "フリガナ" %>
+    <%= f.text_field :last_name_kana %>
+    <%= f.text_field :first_name_kana %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email, "メールアドレス" %>
+    <%= f.email_field :emai, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :postcode, "郵便番号(ハイフンなし)"%>
+    <%= f.text_field :postcode %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address, "住所" %>
+    <%= f.text_field :address %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :tel, "電話番号(ハイフンなし)"%>
+  </div>
+
+  <div class="field">
+    <%= f.label :password, "パスワード(6文字以上)" %>
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, "パスワード(確認用)" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "新規登録", class: "btn btn-success" %>
+  </div>
+<% end %>
+
+<h3><span style="background-color: gray;">既に登録済みの方</span></h3>
+<p><%= link_to "こちら", new_customer_session_path %>からログインしてください</p>
+
+<%= render "devise/shared/links" %>
