@@ -1,49 +1,7 @@
-<% @items.each_slice(4) do |items| %>
-<% if items[0].present? %>
-<div class="col-md-3 item-info">
-  <%= link_to item_path(items[0]), local: true do %>
-    <%= attachment_image_tag items[0], :image, :fill, 100, 100, format: "jpg", fallback: "noimage.jpg", size: "100x100" %>
+<div class="col-md-3">
+  <%= link_to item_path(item) do %>
+    <%= attachment_image_tag item, :image, :fill, 100, 100, format: "jpg", fallback: "noimage.jpg", size: "100x100" %>
   <% end %>
-  <br>
-  <%= items[0].name %>
-  <br>
-  <%= items[0].price%>
+  <p><%= item.name %></p>
+  <p><%= item.price %></p>
 </div>
-<% end %>
-
-<% if items[1].present? %>
-<div class="col-md-3 item-info">
-  <%= link_to item_path(items[1]), local: true do %>
-    <%= attachment_image_tag items[1], :image, :fill, 100, 100, format: "jpg", fallback: "noimage.jpg", size: "100x100" %>
-  <% end %>
-  <br>
-  <%= items[1].name %>
-  <br>
-  <%= items[1].price%>
-</div>
-<% end %>
-
-<% if items[2].present? %>
-<div class="col-md-3 item-info">
-  <%= link_to item_path(items[2]), local: true do %>
-    <%= attachment_image_tag items[2], :image, :fill, 100, 100, format: "jpg", fallback: "noimage.jpg", size: "100x100" %>
-  <% end %>
-  <br>
-  <%= items[2].name %>
-  <br>
-  <%= items[2].price%>
-</div>
-<% end %>
-
-<%if items[3].present? %>
-<div class="col-md-3 item-info">
-  <%= link_to item_path(items[3]), local: true do %>
-    <%= attachment_image_tag items[3], :image, :fill, 0, 100, format: "jpg", fallback: "noimage.jpg", size: "100x100" %>
-  <% end %>
-  <br>
-  <%= items[3].name %>
-  <br>
-  <%= items[3].price%>
-</div>
-<% end %>
-<% end %>

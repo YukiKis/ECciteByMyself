@@ -17,7 +17,7 @@
 
   <div class="field">
     <%= f.label :email, "メールアドレス" %>
-    <%= f.email_field :emai, autocomplete: "email" %>
+    <%= f.email_field :email, autocomplete: "email" %>
   </div>
 
   <div class="field">
@@ -32,6 +32,7 @@
   
   <div class="field">
     <%= f.label :tel, "電話番号(ハイフンなし)"%>
+    <%= f.text_field :tel%>
   </div>
 
   <div class="field">

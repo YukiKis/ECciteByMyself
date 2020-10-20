@@ -40,6 +40,14 @@ class Order < ApplicationRecord
   end
 
   def date_show
-    "#{ self.created_at.strftime("%Y/%m/%d") }"
+    "#{ self.created_at.strftime("%Y/%m/%d %H:%M:%S") }"
+  end
+
+  def item_count 
+    count = 0
+    self.order_items.each do |order_item|
+      count += order_item.amount 
+    end
+    count
   end
 end

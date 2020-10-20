@@ -32,6 +32,14 @@ class Customer < ApplicationRecord
   def full_name_kana_with_space
     self.last_name_kana + " " + self.first_name_kana
   end
+
+  def status
+    if is_active
+      "有効"
+    else
+      "退会済み"
+    end
+  end
 end
 
 

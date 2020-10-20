@@ -1,0 +1,13 @@
+<div class="col-md-10 col-md-offset-1">
+  <h3><span style="background-color: gray;">ジャンル編集</span></h3>
+
+  <%= form_with model: @category, url: admin_category_path(@category), local: true do |f| %>
+    <%= f.label :name, "ジャンル" %>
+    <%= f.text_field :name %>
+    <%= f.radio_button :is_active, true %>
+    <%= f.label :is_active_true, "有効" %>
+    <%= f.radio_button :is_active, false %>
+    <%= f.label :is_active_false, "無効" %>
+    <%= f.submit "変更を保存する" %>
+  <% end %>
+</div>

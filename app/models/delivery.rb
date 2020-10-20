@@ -10,9 +10,10 @@ class Delivery < ApplicationRecord
   end
 
   def self.for_select(customer)
-    Delivery.where(customer_id: customer.id).map do |d|
+    deliver_name = Delivery.where(customer_id: customer.id).map do |d|
       d.show
     end
+    deliver_name
   end
 
 end

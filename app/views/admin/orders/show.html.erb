@@ -1,0 +1,34 @@
+<div class="col-md-10 col-md-offset-1">
+  <h3><span style="background-color: gray;">注文履歴詳細</span></h3>
+  <table class="table noborder">
+    <tr><th>購入者</th><td><%= link_to @order.customer.full_name, admin_customer_path(@order.customer) %></td></tr>
+    <tr><th>配送先</th><td><%= @order.deliver_show %></td></tr>
+    <tr><th>支払方法</th><td><%= @order.how_to_pay %></td></tr>
+    <%= form_with model: @order, url: admin_order_path(@order), local: true do |f| %>
+      <tr><th><%= f.label :status, "注文ステータス" %></th>
+        <td><%= f.select :status, ["入金待ち", "入金確認", "製作中", "発送準備中", "発送済み"], selected: @order.status %>
+        <%= f.submit "更新", class: "btn btn-primary", id: "update-order-status" %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <div class="row">
+    <div class="col-md-8">
+      <table class="table noborder">
+      <thead>
+        <tr><th>商品名</th><th>単価（税込）</th><th>数量</th><th>小計</th><th>製作ステータス</th><th></th></tr>
+      </thead>
+      <tbody>
+        <%= render @order_items %>
+      </tbody>
+    </table>
+    </div>
+  
+    <div class="col-md-4">
+      <table class="noborder">
+        <tr><th>商品合計</th><td><%= @order.total_price %></td></tr>
+        <tr><th>送料</th><td><%= @order.deliver_fee %></td></tr>
+        <tr><th>請求金額合計</th><td><%= @order.get_whole_total_price %></td></tr>
+      </table>
+    </div>  
+</div>

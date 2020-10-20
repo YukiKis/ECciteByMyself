@@ -2,8 +2,8 @@ FactoryBot.define do
   factory :customer1, class: Customer do
     last_name { "岸" }
     first_name { "優" }
-    last_name_kana { "きし" }
-    first_name_kana { "ゆう" }
+    last_name_kana { "キシ" }
+    first_name_kana { "ユウ" }
     email { "yuki@com" }
     password { "testtest" }
     password_confirmation { "testtest" }
@@ -15,8 +15,8 @@ FactoryBot.define do
     factory :customer2, class: Customer do
     last_name { "森" }
     first_name { "林" }
-    last_name_kana { "もり" }
-    first_name_kana { "りん" }
+    last_name_kana { "モリ" }
+    first_name_kana { "リン" }
     email { "rin@com" }
     password { "testtest" }
     password_confirmation { "testtest" }
@@ -28,8 +28,8 @@ FactoryBot.define do
     factory :customer3, class: Customer do
     last_name { "川" }
     first_name { "羽" }
-    last_name_kana { "かわ" }
-    first_name_kana { "はね" }
+    last_name_kana { "カワ" }
+    first_name_kana { "ハネ" }
     email { "kawa@com" }
     password { "testtest" }
     password_confirmation { "testtest" }

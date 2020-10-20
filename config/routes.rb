@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
 
+
   namespace :admin do
     get 'admins/top', to: "admins#top", as: "top"
     resources :items
+    resources :categories, only: [:new, :edit, :update, :create]
+    resources :customers, only: [:index, :show, :edit, :update]
+    resources :orders, only: [:index, :show, :update]
+    resources :order_items, only: [:update]
   end
 
   scope module: :public do
+    get "index/:id", to: "items#search", as: "search"
     resources :items, only: [:index, :show]
     delete "cart_items/destroy_all", to: "cart_items#destroy_all", as: "cart_items_all"
     resources :cart_items, only: [:index, :create, :update, :destroy]
@@ -16,7 +22,7 @@ Rails.application.routes.draw do
     post "customers/out", to: "customers#out", as: "customers_out"
     resources :orders, only: [:index, :show, :new, :create]
     resource :customers, only: [:show, :edit, :update]
-    resources :deliveries, only: [:index, :create, :edit, :update]
+    resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
   end
   devise_for :customers, controllers: {
     sessions: "customers/sessions",

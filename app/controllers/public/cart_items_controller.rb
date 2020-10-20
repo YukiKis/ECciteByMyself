@@ -4,9 +4,13 @@ class Public::CartItemsController < ApplicationController
   end
   
   def create
-    @cart_items = current_customer.cart_items.new(cart_item_params)
-    if @cart_items.save
-      redirect_to cart_items_path
+    if customer_signed_in?
+      @cart_items = current_customer.cart_items.new(cart_item_params)
+      if @cart_items.save
+        redirect_to cart_items_path
+      end
+    else
+      redirect_to new_customer_session_path
     end
   end
 

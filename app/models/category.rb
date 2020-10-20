@@ -9,4 +9,12 @@ class Category < ApplicationRecord
       "#{category.name}"
     end
   end
+  
+  def status
+    if is_active
+      "有効"
+    else
+      "無効"
+    end
+  end
 end
