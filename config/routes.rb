@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'admins/top', to: "admins#top", as: "top"
+    resources :items
+  end
 
   scope module: :public do
     resources :items, only: [:index, :show]
@@ -19,6 +23,7 @@ Rails.application.routes.draw do
     registrations: "customers/registrations"
   }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
 
   devise_for :admins, controllers: {
     sessions: "admins/sessions",

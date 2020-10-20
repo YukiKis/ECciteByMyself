@@ -10,4 +10,16 @@ class Item < ApplicationRecord
   validates :description, presence: true
   validates :price, presence: true, numericality: true
   validates :is_active, inclusion: { in: [true, false] }
+
+  def price_with_tax
+    (self.price * 1.1).floor
+  end
+
+  def status
+    if is_active
+     "販売中"
+    else
+      "販売中止"
+    end
+  end
 end

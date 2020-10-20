@@ -13,13 +13,13 @@
         <li><%= link_to "マイページ", customers_path %></li>
         <li><%= link_to "商品一覧", items_path %></li>
         <li><%= link_to "カート", cart_items_path %></li>
-        <li><%= link_to "ログアウト", destroy_customer_session_path %></li>
+        <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
       <% elsif admin_signed_in? %>
-        <li><a href="#">商品一覧</a></li>
+        <li><%= link_to "商品一覧", admin_items_path%></li>
         <li><a href="#">会員一覧</a></li>
         <li><a href="#">注文履歴一覧</a></li>
         <li><a href="#">ジャンル一覧</a></li>
-        <li><%= link_to "ログアウト", destroy_admin_session_path %></li>
+        <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
       <% else %>
         <li><%= link_to "About", about_path %></li>
         <li><%= link_to "商品一覧", items_path %></li>

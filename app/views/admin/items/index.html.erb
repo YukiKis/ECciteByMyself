@@ -1,0 +1,13 @@
+<div class="col-md-10 col-md-offset-1">
+  <h3><span style="background-color: gray;">商品一覧</span></h3>
+
+  <%= link_to "+", new_admin_item_path, class: "btn"%>
+  <table class="table">
+    <thead>
+      <tr><th>商品ID</th><th>商品名</th><th>税抜価格</th><th>ジャンル</th><th>販売中</th></tr>
+    </thead>
+    <tbody>
+      <%= render @items%>
+    </tbody>
+  </table>
+</div>

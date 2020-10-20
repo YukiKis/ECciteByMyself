@@ -1,0 +1,42 @@
+<div class="col-md-10 col-md-offset-1">
+  <h3><span style="background-color: gray;">商品新規登録</span></h3>
+  <%= form_with model: @item, url: admin_items_path, local: true do |f| %>
+  <div class="row">
+      <div class="col-md-4">
+        <%= f.attachment_field :image %>
+        <% unless @item.image.present? %>
+          <span>選択されていません</span>
+        <% end %>
+      </div>
+
+      <div class="col-md-8">
+        <div class="form-group">  
+          <%= f.label :name, "商品名" %>
+          <%= f.text_field :name%>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :description, "商品説明"%>
+          <%= f.text_area :description %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :category, "ジャンル" %>
+          <%= f.select :category, Category.for_select, include_blank: "--選択してください--"%>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :price, "税抜価格"%>
+          <%= f.text_field :price %>円
+        </div>
+
+        <div class="form-group">
+          <%= f.label :is_active %>
+          <%= f.select :is_active, [["販売中", true], ["販売中止", false]], include_blank: "--選択して下さい--"%>
+        </div>
+      </div>
+  </div>
+  <%= f.submit "新規登録", class: "btn btn-primary" %>
+  <% end %>
+
+</div>
