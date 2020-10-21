@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
 
+  devise_for :admins, controllers: {
+    sessions: "admins/sessions",
+    registrations: "admins/retistrations"
+  }
+
   namespace :admin do
     get 'admins/top', to: "admins#top", as: "top"
     resources :items
@@ -18,23 +23,22 @@ Rails.application.routes.draw do
     post "orders/log", to: "orders#log", as: "orders_log"
     post "orders/check", to: "orders#check", as: "orders_check"
     get "orders/thanks", to: "orders#thanks", as: "orders_thanks"
-    get "customers/quit", to: "customers#quit", as: "customers_quit"
-    post "customers/out", to: "customers#out", as: "customers_out"
+    get "customers/quit", to: "customers#quit", as: "quit"
+    patch "customers/out", to: "customers#out", as: "out"
     resources :orders, only: [:index, :show, :new, :create]
     resource :customers, only: [:show, :edit, :update]
     resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
   end
+
   devise_for :customers, controllers: {
     sessions: "customers/sessions",
     registrations: "customers/registrations"
   }
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 
-  devise_for :admins, controllers: {
-    sessions: "admins/sessions",
-    registrations: "admins/retistrations"
-  }
+
   
 
   scope module: :public do

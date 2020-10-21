@@ -6,7 +6,7 @@ class Category < ApplicationRecord
 
   def self.for_select
     Category.all.map do |category|
-      "#{category.name}"
+      category.name
     end
   end
   

@@ -37,21 +37,24 @@ RSpec.describe "Public::Orders", type: :system do
       it "succeeds to go to order-log" do
         choose "クレジットカード"
         choose "ご自身の住所"
-        click_button "確認画面に進む"
-        expect(current_path).to eq orders_thanks_path
+        click_button "確認画面へ進む"
+        expect(current_path).to eq orders_log_path
       end
     end
     context "on order-log page" do
       before do
-        @order = customer1.orders.new(
+        visit new_order_path
+        choose "クレジットカード"
+        choose "ご自身の住所"
+        click_button "確認画面へ進む"
+        @order = customer1.orders.new({
           deliver_postcode: customer1.postcode,
           deliver_address: customer1.address,
-          deliver_name: customer1.name,
-          deliver_fee: 800
-        )
-        @order.set_order_items
-        @order.total_price = @order.set_total_price
-        visit orders_log_path
+          deliver_name: customer1.full_name,
+          how_to_pay: 0
+        })
+        @order.set_order_items(customer1)
+        @order.set_total_price
       end
       it "has '注文情報確認'" do
         expect(page).to have_content "注文情報確認"
@@ -68,13 +71,13 @@ RSpec.describe "Public::Orders", type: :system do
       it "has info for order_items" do
         @order.order_items.each do |order_item|
           expect(page).to have_content order_item.item.name
-          expect(page).to have_contemnt order_item.price
+          expect(page).to have_content order_item.price
           expect(page).to have_content order_item.amount
           expect(page).to have_content order_item.subtotal
         end
         expect(page).to have_content @order.deliver_fee
         expect(page).to have_content @order.total_price
-        expect(page).to have_content @order.whole_total_price
+        expect(page).to have_content @order.get_whole_total_price
       end
       it "has info for how_to_pay" do
         expect(page).to have_content "支払方法"
@@ -94,14 +97,16 @@ RSpec.describe "Public::Orders", type: :system do
         expect(current_path).to eq orders_thanks_path
       end
     end
+
     context "on order-thanks page" do
       before do 
-        orders_thanks_page
+        visit orders_thanks_path
       end
       it "has 'ご購入ありがとうございました！" do
         expect(page).to have_content "ご購入ありがとうございました！"
       end
     end
+
     context "on order-index page" do
       before do 
         visit orders_path
@@ -131,65 +136,75 @@ RSpec.describe "Public::Orders", type: :system do
           expect(page).to have_link "表示する", order_path(order)
         end
       end
-      context "on order-show page" do
-        before do
-          visit order_path(@order)
-        end
-        it "has '注文履歴詳細'" do
-          expect(page).to have_content "注文履歴詳細"
-        end
-        it "has '注文情報'" do
-          expect(page).to have_content "注文情報"
-        end
-        it "has date for order" do
-          expect(page).to have_content "注文日"
-          expect(page).to have_content @order.created_at.strftime("%Y/%m/%d")
-        end
-        it "has where to deliver" do
-          expect(page).to have_content "配送先"
-          expect(page).to have_content @order.deliver_postcode
-          expect(page).to have_content @order.deliver_address
-          expect(page).to have_content @order.deliver_name
-        end
-        it "has how_to_pay" do
-          expect(page).to have_content "支払方法"
-          expect(page).to have_content @order.how_to_pay
-        end
-        it "has order_sttus" do
-          expect(page).to have_content "ステータス"
-          expect(page).to have_content @order.status
-        end
-        it "has '請求情報'" do
-          expect(page).to have_content "請求情報"
-        end
-        it "has total_price" do
-          expect(page).to have_content "商品合計"
-          expect(page).to have_content @order.get_total_price
-        end
-        it "has deliver_fee" do
-          expect(page).to have_content "配送料"
-          expect(page).to have_content @order.deliver_fee
-        end
-        it "has whole_total_price" do
-          expect(page).to have_content "ご請求額"
-          expect(page).to have_content @order.get_whole_total_price
-        end
-        it "has '注文内容'" do
-          expect(page).to have_content "注文内容"
-        end
-        it "has table-heading for order_items" do
-          expect(page).to have_content "商品"
-          expect(page).to have_content "単価（税込）"
-          expect(page).to have_content "個数"
-          expect(page).to have_content "小計"
-        end
-        it "has order_item info" do
-          @order.order_items.each do |order_item|
-            expect(page).to have_content order_item.item.name
-            expect(page).to have_content order_item.price
-            expect(page).to have_content order_item.amount
-            expect(page).to have_content order_item.subtotal
-          end
+    end
+    context "on order-show page" do
+      before do
+        @order = customer1.orders.new({ 
+          deliver_postcode: customer1.postcode,
+          deliver_address: customer1.address,
+          deliver_name: customer1.full_name,
+          deliver_fee: 800,
+          how_to_pay: 0
+        })
+        @order.set_order_items(customer1)
+        @order.total_price = @order.set_total_price
+        @order.save
+        visit order_path(@order)
+      end
+      it "has '注文履歴詳細'" do
+        expect(page).to have_content "注文履歴詳細"
+      end
+      it "has '注文情報'" do
+        expect(page).to have_content "注文情報"
+      end
+      it "has date for order" do
+        expect(page).to have_content "注文日"
+        expect(page).to have_content @order.created_at.strftime("%Y/%m/%d")
+      end
+      it "has where to deliver" do
+        expect(page).to have_content "配送先"
+        expect(page).to have_content @order.deliver_postcode
+        expect(page).to have_content @order.deliver_address
+        expect(page).to have_content @order.deliver_name
+      end
+      it "has how_to_pay" do
+        expect(page).to have_content "支払方法"
+        expect(page).to have_content @order.how_to_pay
+      end
+      it "has order_sttus" do
+        expect(page).to have_content "ステータス"
+        expect(page).to have_content @order.status
+      end
+      it "has '請求情報'" do
+        expect(page).to have_content "請求情報"
+      end
+      it "has total_price" do
+        expect(page).to have_content "商品合計"
+        expect(page).to have_content @order.total_price
+      end
+      it "has deliver_fee" do
+        expect(page).to have_content "配送料"
+        expect(page).to have_content @order.deliver_fee
+      end
+      it "has whole_total_price" do
+        expect(page).to have_content "ご請求額"
+        expect(page).to have_content @order.get_whole_total_price
+      end
+      it "has '注文内容'" do
+        expect(page).to have_content "注文内容"
+      end
+      it "has table-heading for order_items" do
+        expect(page).to have_content "商品"
+        expect(page).to have_content "単価（税込）"
+        expect(page).to have_content "個数"
+        expect(page).to have_content "小計"
+      end
+      it "has order_item info" do
+        @order.order_items.each do |order_item|
+          expect(page).to have_content order_item.item.name
+          expect(page).to have_content order_item.price
+          expect(page).to have_content order_item.amount
+          expect(page).to have_content order_item.subtotal
         end
       end
     end

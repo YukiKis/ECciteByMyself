@@ -1,5 +1,6 @@
 class Public::DeliveriesController < ApplicationController
   before_action :setup, only: [:index, :show, :create]
+  before_action :authenticate_customer!
 
   def setup
     @customer = current_customer

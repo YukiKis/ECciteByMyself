@@ -1,10 +1,11 @@
 <div class="col-md-7">
-  <h3><span style="color: gray;">マイページ</span></h3>
+  <h3><span style="background-color: gray;">マイぺージ</span></h3>
   <h3><b>登録情報</b> <%= link_to "編集する", edit_customers_path, class: "btn btn-primary" %> <%= link_to "パスワードを変更する", edit_customer_password_path, class: "btn btn-primary" %> </h3>
   <table class="table">
     <tr><th>氏名</th><td><%= @customer.full_name_with_space %></td></tr>
     <tr><th>カナ</th><td><%= @customer.full_name_kana_with_space %></td></tr>
-    <tr><th>郵便番号番号</th><td><%= @customer.address %></td></tr>
+    <tr><th>郵便番号</th><td><%= @customer.postcode %></td></tr>
+    <tr><th>住所</th><td><%= @customer.address %></td></tr>
     <tr><th>電話番号</th><td><%= @customer.tel %></td></tr>
     <tr><th>メールアドレス</th><td><%= @customer.email %></td></tr>
   </table>

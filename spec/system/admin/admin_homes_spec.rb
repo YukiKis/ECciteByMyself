@@ -26,7 +26,7 @@ RSpec.describe "Adnub::Homes", type: :system do
       it "fails to login" do
         click_button "ログイン"
         expect(current_path).to eq new_admin_session_path
-        expect(page).to have_content "error"
+        expect(page).to have_content "Invalid Email or password"
       end
     end
     context "on admin top page" do

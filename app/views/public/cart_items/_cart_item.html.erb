@@ -4,8 +4,8 @@
   <td>
     <%= form_with model: cart_item, local: true do |f| %>
       <%= f.hidden_field :item_id, value: cart_item.item.id %>
-      <%= f.number_field :amount %>
-      <%= f.submit "変更", class: "btn btn-primary" %>
+      <%= f.number_field :amount, id: "cart_item-#{cart_item.id}" %>
+      <%= f.submit "変更", class: "btn btn-primary", id: "cart_item-update-#{cart_item.id}" %>
     <% end %>
   </td>
   <td><%= cart_item.subtotal %></td>

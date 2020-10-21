@@ -11,13 +11,13 @@ RSpec.describe "Public::Customers", type: :system do
     end
     context "on customer-show page" do
       before do
-        visit customer_path
+        visit customers_path
       end
       it "has 'マイページ'" do
         expect(page).to have_content "マイぺージ"
       end
       it "has button for editing customer info" do
-        expect(page).to have_link "編集する", href: edit_customer_path
+        expect(page).to have_link "編集する", href: edit_customers_path
       end
       it "has button for going to change password" do
         expect(page).to have_link "パスワードを変更する", href: edit_customer_password_path
@@ -32,12 +32,12 @@ RSpec.describe "Public::Customers", type: :system do
         expect(page).to have_content "メールアドレス"
       end
       it "has info for customer" do
-        expect(page).to have_content customer1.full_name
-        expect(page).to have_content customer1.full_name_kana
+        expect(page).to have_content customer1.full_name_with_space
+        expect(page).to have_content customer1.full_name_kana_with_space
         expect(page).to have_content customer1.postcode
         expect(page).to have_content customer1.address
         expect(page).to have_content customer1.tel
-        expect(page).to have_content custeomr1.email
+        expect(page).to have_content customer1.email
       end
       it "has button for delivery-index" do
         expect(page).to have_content "配送先"
@@ -56,22 +56,24 @@ RSpec.describe "Public::Customers", type: :system do
         expect(page).to have_content "本当に退会しますか？"
       end
       it "has sentences for explaining" do
-        expect(page).to have_content "退会すると、会員登録情報やこれまでの購入履歴が閲覧できなくなります。退会する場合は、「退会する」をクリックしてください。"
+        expect(page).to have_content "退会すると、"
       end
       it "has button for not quit" do
-        expect(page).to have_link "退会しない", href: customer_path
+        expect(page).to have_link "退会しない", href: customers_path
       end
       it "has button for out" do
-        expect(page).to have_link "退会する", href: out_path
+        expect(page).to have_button "退会する"
       end
       it "succeeds to quit" do
-        click_button "退会する"
+        page.accept_confirm do
+          click_button "退会する"
+        end
         expect(current_path).to eq root_path
       end
     end
     context "on customer-edit page" do
       before do
-        visit edit_customer_path
+        visit edit_customers_path
       end
       it "has '登録情報編集'" do
         expect(page).to have_content "登録情報編集"
@@ -80,7 +82,7 @@ RSpec.describe "Public::Customers", type: :system do
         expect(page).to have_content "名前"
         expect(page).to have_content "姓"
         expect(page).to have_content "名"
-        expect(page).to haev_content "フリガナ"
+        expect(page).to have_content "フリガナ"
         expect(page).to have_content "セイ"
         expect(page).to have_content "メイ"
         expect(page).to have_content "メールアドレス"
@@ -92,7 +94,7 @@ RSpec.describe "Public::Customers", type: :system do
         expect(page).to have_field "customer[last_name]", with: customer1.last_name
         expect(page).to have_field "customer[first_name]", with: customer1.first_name
         expect(page).to have_field "customer[last_name_kana]", with: customer1.last_name_kana
-        expect(page).to have_field "customer[first_name_kana]", with: custeomr1.first_name_kana
+        expect(page).to have_field "customer[first_name_kana]", with: customer1.first_name_kana
         expect(page).to have_field "customer[email]", with: customer1.email
         expect(page).to have_field "customer[postcode]", with: customer1.postcode
         expect(page).to have_field "customer[address]", with: customer1.address
@@ -107,13 +109,12 @@ RSpec.describe "Public::Customers", type: :system do
       it "succeeds to change customer info" do
         fill_in "customer[tel]", with: "00000000000"
         click_button "編集内容を保存する"
-        expect(current_path).to eq customer_path
+        expect(current_path).to eq customers_path
         expect(page).to have_content "00000000000"
       end
       it "fails to change info" do
         fill_in "customer[last_name]", with: ""
         click_button "編集内容を保存する"
-        expect(current_path).to eq edit_customer_path
         expect(page).to have_content "error"
       end
     end

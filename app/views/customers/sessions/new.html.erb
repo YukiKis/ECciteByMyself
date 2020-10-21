@@ -1,5 +1,6 @@
 <h3><span style="background-color: gray;">会員の方はこちらからログイン</span></h3>
 
+<%= render "layouts/error", resource: @customer %>
 <%= form_with model: @customer, url: session_path(resource), local: true do |f| %>
   <div class="field">
     <%= f.label :email, "メールアドレス" %>

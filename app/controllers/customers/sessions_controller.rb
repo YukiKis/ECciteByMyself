@@ -10,7 +10,7 @@ class Customers::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   # def create
-    # super
+  #   super
   # end
 
   # DELETE /resource/sign_out
@@ -22,15 +22,17 @@ class Customers::SessionsController < Devise::SessionsController
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params
-  #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
+  #   devise_parameter_sanitizer.permit(:sign_in, keys: [:email, :password])
   # end
 
-  def after_sign_up_path_for(resource)
-    items_path
-  end
-
   def after_sign_in_path_for(resource)
-    items_path
+    unless current_customer.is_active
+      session.clear
+      flash.notice = "退会済み"
+      new_customer_session_path
+    else
+      items_path
+    end
   end
 
   def after_sign_out_path_for(resource)

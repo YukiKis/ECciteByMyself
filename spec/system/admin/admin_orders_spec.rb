@@ -76,13 +76,13 @@ RSpec.describe "Admin::Orders", type: :system do
       it "has header for order info" do
         expect(page).to have_content "購入者"
         expect(page).to have_content "配送先"
-        expect(page).to have_conetnt "支払方法"
+        expect(page).to have_content "支払方法"
         expect(page).to have_content "注文ステータス"
       end
       it "has info for order" do
       end
       it "has button for updating order status" do
-        expect(page).to have_css ".update-order-status"
+        expect(page).to have_css "#update-order-status"
       end
       it "has table-heading for order_items" do
         expect(page).to have_content "商品名"
@@ -98,7 +98,7 @@ RSpec.describe "Admin::Orders", type: :system do
           expect(page).to have_content order_item.amount
           expect(page).to have_content order_item.subtotal
           expect(page).to have_content order_item.status
-          expect(page).to have_css ".update-make-status"
+          expect(page).to have_css "#update-make-status-#{order_item.id}"
         end
       end
       it "has '商品合計'" do
@@ -123,10 +123,10 @@ RSpec.describe "Admin::Orders", type: :system do
         expect(page).to have_select("order[status]", selected: "発送済み")
       end
       it "changes order_item_status" do
-        select "製作中", from: "find_all(order_item[status])[0]"
-        click_button "find_all(更新)[0]"
+        select "製作中", from: "make-status-#{ @order1.id }"
+        click_button "update-make-status-#{ @order1.id }"
         expect(current_path).to eq admin_order_path(@order1)
-        expect(page).to have_select("find_all(order[status])[0]", selected: "製作中")
+        expect(page).to have_select("make-status-#{ @order1.id}", selected: "製作中")
       end
     end
   end

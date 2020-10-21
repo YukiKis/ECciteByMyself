@@ -1,0 +1,8 @@
+<% if resource.errors.any? %>
+<h3><%= pluralize(resource.errors.count, "error") %> prohibited this from being saved</h3>
+<ul>
+  <% resource.errors.full_messages.each do |m| %>
+    <li><%= m %></li>
+  <% end %>
+</ul>
+<% end %>

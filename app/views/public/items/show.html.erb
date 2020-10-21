@@ -5,9 +5,11 @@
     </div>
 
     <div class="col-md-9">
+    
+    <%= render "layouts/error", resource: @cart_item%>
       <div class="row">
         <div class="col-md-5">
-          <%= attachment_image_tag @item, :image, :fill, 500, 300, format: "jpg", fallback: "noimage.jpg", size: "500x300" %>
+          <%= attachment_image_tag @item, :image, :fill, 500, 300, format: "jpg", fallback: "noimage.jpg", size: "500x300", alt: "item-image-#{ @item.id }" %>
           <h3><%= @item.name%></h3>
           <p><%= @item.description %></p>
           <h3>¥<%= (@item.price * 1.1).to_i %>(税込)</h3>

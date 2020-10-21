@@ -1,3 +1,5 @@
+
+<%= render "layouts/error", resource: @order %>
 <h3><span style="background-color: gray;">注文情報入力</span></h3>
 <%= form_with model: @order, url: orders_log_path, local: true do |f| %>
   <h3>支払方法</h3>
@@ -13,18 +15,18 @@
   <%= current_customer.postcode %> <%= current_customer.address %><br><%= current_customer.full_name %>
   <br>
   <%= f.radio_button :address_select, "2" %>
-  <%= f.label :adderss_select_2, "登録済み住所から選択" %>
+  <%= f.label :address_select_2, "登録済み住所から選択" %>
   <br>
   <%= f.select :address_where, Delivery.for_select(current_customer) %>
   <br>
   <%= f.radio_button :address_select, "3" %>
 
   <%= f.label :address_select_3, "新しいお届け先", class: "remote-input", remote: true %>
-    <%= f.label :postcode, "郵便番号(ハイフンなし)" %>
-    <%= f.text_field :postcode, disabled: true %><br>
-    <%= f.label :address, "住所" %>
-    <%= f.text_field :address, disabled: true %>
-    <%= f.label :name, "宛名" %> 
-    <%= f.text_field :name, disabled: true %>
+    <%= f.label :deliver_postcode, "郵便番号(ハイフンなし)" %>
+    <%= f.text_field :deliver_postcode %><br>
+    <%= f.label :deliver_address, "住所" %>
+    <%= f.text_field :deliver_address %>
+    <%= f.label :deliver_name, "宛名" %> 
+    <%= f.text_field :deliver_name %>
   <%= f.submit "確認画面へ進む", class: "btn btn-primary"%>
 <% end %>

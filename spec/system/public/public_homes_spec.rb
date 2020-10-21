@@ -29,12 +29,12 @@ RSpec.describe "Public::Homes", type: :system do
         fill_in "customer[email]", with: customer1.email
         fill_in "customer[password]", with: customer1.password
         click_button "ログイン"
-        expect(current_path).to eq customer_path(customer1)
+        expect(current_path).to eq items_path
       end
       it "fails to login" do
         click_button "ログイン"
         expect(current_path).to eq new_customer_session_path
-        expect(page).to have_content "error"
+        expect(page).to have_content "Invalid Email or password"
       end
     end
     context "on registration_page" do
@@ -56,7 +56,7 @@ RSpec.describe "Public::Homes", type: :system do
         expect(page).to have_field "customer[email]"
       end
       it "has field for postcode" do
-        expect(page).to have_content "郵便番号ハイフンなし)"
+        expect(page).to have_content "郵便番号(ハイフンなし)"
         expect(page).to have_field "customer[postcode]"
       end
       it "has field for address" do
@@ -96,11 +96,10 @@ RSpec.describe "Public::Homes", type: :system do
         fill_in "customer[password]", with: "testtest"
         fill_in "customer[password_confirmation]", with: "testtest"
         click_button "新規登録"
-        expect(current_path).to eq customer_path
+        expect(current_path).to eq items_path
       end
       it "fails to make a customer" do
         click_button "新規登録"
-        expect(current_path).to eq new_customer_registration_path
         expect(page).to have_content "error"
       end
     end

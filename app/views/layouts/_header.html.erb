@@ -10,6 +10,7 @@
   <div class="collapse navbar-collapse" id="navbar-content">
     <ul class="nav navbar-nav navbar-right">
       <% if customer_signed_in? %>
+        <li>ようこそ、<%= current_customer.full_name_with_space %>さん！</li>
         <li><%= link_to "マイページ", customers_path %></li>
         <li><%= link_to "商品一覧", items_path %></li>
         <li><%= link_to "カート", cart_items_path %></li>

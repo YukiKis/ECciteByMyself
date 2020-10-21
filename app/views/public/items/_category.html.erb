@@ -2,7 +2,7 @@
   <thead><tr><th>ジャンル検索</th></tr></thead>
   <tbody>
     <% Category.all.each do |category| %>
-      <tr><td><%= link_to category.name, search_path(category.id) %></td></tr>
+      <tr><td><%= link_to category.name, search_path(category) %></td></tr>
     <% end %>
   </tbody>
 </table>

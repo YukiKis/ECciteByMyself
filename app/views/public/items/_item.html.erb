@@ -1,6 +1,6 @@
 <div class="col-md-3">
   <%= link_to item_path(item) do %>
-    <%= attachment_image_tag item, :image, :fill, 100, 100, format: "jpg", fallback: "noimage.jpg", size: "100x100" %>
+    <%= attachment_image_tag item, :image, :fill, 100, 100, format: "jpg", fallback: "noimage.jpg", size: "100x100", alt: "item-image-#{item.id}" %>
   <% end %>
   <p><%= item.name %></p>
   <p><%= item.price %></p>
