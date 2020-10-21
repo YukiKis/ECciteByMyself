@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default">
   <div class="navbar-header">
     <%= link_to "LOGO", root_path %>
-    <button type="button", class="navbar-toggle collapsed" data-toggle="#navbar-content">
+    <button type="button", class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-content">
       <span class="sr-only">Toggle navigation</span>
       <span class="icon-bar"></span>
     </button>
@@ -14,13 +14,19 @@
         <li><%= link_to "マイページ", customers_path %></li>
         <li><%= link_to "商品一覧", items_path %></li>
         <li><%= link_to "カート", cart_items_path %></li>
-        <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
+        <li><%= link_to "ログアウト", destroy_customert_session_path, method: :delete %></li>
       <% elsif admin_signed_in? %>
         <li><%= link_to "商品一覧", admin_items_path%></li>
         <li><%= link_to "会員一覧", admin_customers_path %></li>
         <li><%= link_to "注文履歴一覧", admin_orders_path %></li>
         <li><%= link_to "ジャンル一覧", new_admin_category_path %></li>
         <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+        <li>
+          <%= form_with scope: :search, url: admin_search_path, local: true do |f| %>
+            <%= f.text_field :keyword, placeholder: "検索ワード", class: "form-inline", style: "margin-top: 8px; padding: 5px 15px; line-height: 20px;" %>
+            <%= f.submit "SEACH!", class: "btn", style: "padding: 10px 15px; line-height 20px; margin-right: 5px;" %>
+          <% end %>
+        </li>
       <% else %>
         <li><%= link_to "About", about_path %></li>
         <li><%= link_to "商品一覧", items_path %></li>

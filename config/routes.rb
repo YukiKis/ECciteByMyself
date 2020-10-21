@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-    get 'admins/top', to: "admins#top", as: "top"
+    get '/top', to: "admins#top", as: "top"
+    post "/search", to: "admins#search", as: "search"
     resources :items
     resources :categories, only: [:new, :edit, :update, :create]
     resources :customers, only: [:index, :show, :edit, :update]

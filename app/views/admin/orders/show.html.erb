@@ -1,6 +1,6 @@
 <div class="col-md-10 col-md-offset-1">
   <%= render "layouts/error", resource: @order %>
-  <h3><span style="background-color: gray;">注文履歴詳細</span></h3>
+  <h3><span>注文履歴詳細</span></h3>
   <table class="table noborder">
     <tr><th>購入者</th><td><%= link_to @order.customer.full_name, admin_customer_path(@order.customer) %></td></tr>
     <tr><th>配送先</th><td><%= @order.deliver_show %></td></tr>

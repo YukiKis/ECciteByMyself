@@ -1,43 +1,47 @@
 <div class="col-md-10 col-md-offset-1">
 
   <%= render "layouts/error", resource: @item %>
-  <h3><span style="background-color: gray;">商品編集</span></h3>
+  <h3><span>商品編集</span></h3>
   <div class="row">
   <%= form_with model: @item, url: admin_item_path(@item), local: true do |f| %>
-    <div clas="col-md-4">
+    <div class="col-md-4">
+      <%= attachment_image_tag @item, :image, class: "img-square", fallback: "noimage.jpg", size: "300x300" %>
       <%= f.attachment_field :image, class: "btn" %>
       <% unless @item.image.present? %>
         <span>選択されていません</span>
       <% end %>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-4 col-md-offset-2">
       <div class="form-group">
         <%= f.label :name, "商品名" %>
-        <%= f.text_field :name %>
+        <%= f.text_field :name, class: "form-control" %>
       </div>
 
       <div class="form-group">
         <%= f.label :description, "商品説明" %>
-        <%= f.text_area :description %>
+        <%= f.text_area :description, class: "form-control" %>
       </div>
       
       <div class="form-group">
         <%= f.label :category %>
-          <%= f.select :category, Category.for_select, selected: @item.category.name %>
+          <%= f.select :category, Category.for_select, { selected: @item.category.name }, { class: "form-control" } %>
       </div>
 
       <div class="form-group">
         <%= f.label :price, "税抜価格" %>
-        <%= f.number_field :price %>円
+        <div class="input-group">
+          <%= f.text_field :price, class: "form-control" %>
+          <span class="input-group-addon">円</span>
+        </div>
       </div>
 
       <div class="form-group">
         <%= f.label :is_active, "販売ステータス" %>
-        <%= f.select :is_active, [[ "販売中", true ], [ "販売中止", false ]], selected: @item.is_active %>
+        <%= f.select :is_active, [[ "販売中", true ], [ "販売中止", false ]], { selected: @item.is_active }, { class: "form-control" } %>
       </div>
-    </div>
 
-    <%= f.submit "変更を保存", class: "btn btn-primary" %>
+      <%= f.submit "変更を保存", class: "btn btn-primary" %>
+    </div>
 
   <% end %>
   </div>

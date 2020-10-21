@@ -1,52 +1,68 @@
 <h2><span style="background-color: gray;">新規会員登録</span></h2>
 
 <%= render "layouts/error", resource: @customer %>
-<%= form_with model: @customer, url: customer_registration_path, id: "new_customer", class: "new_customer", local: true do |f| %>
+<%= form_with model: @customer, url: customer_registration_path, id: "new_customer", class: "new_customer form-horizontal", local: true do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :last_name, "名前" %>
-    <%= f.text_field :last_name %>
-    <%= f.text_field :first_name %>
+  <div class="form-group">
+    <%= f.label :last_name, "名前", class: "text-left col-md-2" %>
+    <div class="col-md-9">
+      <%= f.text_field :last_name %>
+      <%= f.text_field :first_name %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :last_name_kana, "フリガナ" %>
-    <%= f.text_field :last_name_kana %>
-    <%= f.text_field :first_name_kana %>
+  <div class="form-group">
+    <%= f.label :last_name_kana, "フリガナ", class: " col-md-2" %>
+    <div class="col-md-9">
+      <%= f.text_field :last_name_kana %>
+      <%= f.text_field :first_name_kana %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :email, "メールアドレス" %>
-    <%= f.email_field :email, autocomplete: "email" %>
+  <div class="form-group">
+    <%= f.label :email, "メールアドレス", class: " col-md-2" %>
+    <div class="col-md-9">
+      <%= f.email_field :email, autocomplete: "email" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :postcode, "郵便番号(ハイフンなし)"%>
-    <%= f.text_field :postcode %>
+  <div class="form-group">
+    <%= f.label :postcode, "郵便番号(ハイフンなし)", class: " col-md-2"%>
+    <div class="col-md-9">
+      <%= f.text_field :postcode %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :address, "住所" %>
-    <%= f.text_field :address %>
+  <div class="form-group">
+    <%= f.label :address, "住所", class: " col-md-2" %>
+    <div class="col-md-9">
+      <%= f.text_field :address %>
+    </div>
   </div>
   
-  <div class="field">
-    <%= f.label :tel, "電話番号(ハイフンなし)"%>
-    <%= f.text_field :tel%>
+  <div class="form-group">
+    <%= f.label :tel, "電話番号(ハイフンなし)", class: " col-md-2" %>
+    <div class="col-md-9">
+      <%= f.text_field :tel%>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password, "パスワード(6文字以上)" %>
-    <%= f.password_field :password, autocomplete: "new-password" %>
+  <div class="form-group">
+    <%= f.label :password, "パスワード(6文字以上)", class: " col-md-2" %>
+    <div class="col-md-9">
+      <%= f.password_field :password, autocomplete: "new-password" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "パスワード(確認用)" %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="form-group">
+    <%= f.label :password_confirmation, "パスワード(確認用)", class: " col-md-2" %>
+    <div class="col-md-9">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
   </div>
 
-  <div class="actions">
+  <div class="actions text-center">
     <%= f.submit "新規登録", class: "btn btn-success" %>
   </div>
 <% end %>

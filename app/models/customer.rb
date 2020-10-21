@@ -17,6 +17,9 @@ class Customer < ApplicationRecord
   validates :tel, presence: true
   validates :is_active, inclusion: { in: [ true, false ] }
 
+  scope :by_first_name, ->(keyword){ where("first_name LIKE ?", "%#{keyword}%") }
+  scope :by_last_name, ->(keyword){ where("last_name LIKE ?", "%#{keyword}%") }
+ 
   def full_name
     self.last_name + self.first_name
   end

@@ -11,6 +11,8 @@ class Item < ApplicationRecord
   validates :price, presence: true, numericality: true
   validates :is_active, inclusion: { in: [true, false] }
 
+  scope :by_name, ->(keyword){ where("name LIKE ?", "%#{keyword}%") }
+
   def price_with_tax
     (self.price * 1.1).floor
   end

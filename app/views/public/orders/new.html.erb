@@ -1,6 +1,6 @@
 
 <%= render "layouts/error", resource: @order %>
-<h3><span style="background-color: gray;">注文情報入力</span></h3>
+<h3><span>注文情報入力</span></h3>
 <%= form_with model: @order, url: orders_log_path, local: true do |f| %>
   <h3>支払方法</h3>
   <%= f.radio_button :how_to_pay, :"クレジットカード", checked: true %>

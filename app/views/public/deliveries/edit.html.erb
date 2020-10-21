@@ -1,6 +1,6 @@
 <div class="col-md-12">
   <%= render "layouts/error", resource: @delivery %>
-  <h3><span style="background-color: gray;">配送先編集</span></h3>
+  <h3><span>配送先編集</span></h3>
   <%= form_with model: @delivery, local: true do |f| %>
     <div class="form-group">
       <%= f.label :postcode, "郵便番号(ハイフンなし)" %>
