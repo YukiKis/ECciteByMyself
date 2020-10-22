@@ -9,12 +9,9 @@
   <div class="row" style="padding-top: 30px;">
     <div class="col-md-3">
       <span style="font-size: 26px; font-weight: bold;">本日の注文件数</span>
-      <%= link_to "詳細を見る", today_order_path %>
     </div>
     <div class="col-md-9">
-      <p style="font-size: 26px;"><u><%= @count %></u>件</p>
+      <p style="font-size: 26px;"><%= link_to admin_orders_today_path, id: "order-today" do %><%= @count %>件<% end %></p>
     </div>
   </div>
- 
-  
 </div>

@@ -8,14 +8,21 @@
     
     <%= render "layouts/error", resource: @cart_item%>
       <div class="row">
-        <div class="col-md-5">
-          <%= attachment_image_tag @item, :image, :fill, 500, 300, format: "jpg", fallback: "noimage.jpg", size: "500x300", alt: "item-image-#{ @item.id }" %>
-          <h3><%= @item.name%></h3>
+        <div class="col-md-5 text-right">
+          <%= attachment_image_tag @item, :image, :fill, 250, 200, format: "jpg", fallback: "noimage.jpg", size: "250x200" %>
+        </div>
+        <div class="col-md-7">
+          <h3><b><%= @item.name%></b></h3>
           <p><%= @item.description %></p>
-          <h3>¥<%= (@item.price * 1.1).to_i %>(税込)</h3>
-          <%= form_with model: @cart_item, local: true do |f| %>
+          <h3>¥<%= (@item.price_with_tax).to_s(:delimited) %>(税込)</h3>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 text-right">
+          <%= form_with model: @cart_item, class: "form-inline", local: true do |f| %>
             <%= f.hidden_field :item_id, value: @item.id %>
-            <%= f.select :amount, options_for_select([1, 2, 3, 4, 5]), include_blank: "個数選択" %>
+            <%= f.select :amount, options_for_select([1, 2, 3, 4, 5]), { include_blank: "個数選択" }, { class: "form-control" } %>
             <%= f.submit "カートに入れる", class: "btn btn-primary" %>
           <% end %>
         </div>

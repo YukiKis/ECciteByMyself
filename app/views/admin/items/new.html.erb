@@ -1,14 +1,12 @@
+<% provide(:title, "商品新規登録") %>
 <div class="col-md-10 col-md-offset-1">
   <%= render "layouts/error", resource: @item %>
   <h3><span>商品新規登録</span></h3>
   <%= form_with model: @item, url: admin_items_path, local: true do |f| %>
   <div class="row">
       <div class="col-md-4">
-        <%= attachment_image_tag @item, :image, class: "img-square", fallback: "noimage.jpg", size: "300x300" %>
+        <%= attachment_image_tag @item, :image, fallback: "noimage.jpg", size: "250x200" %>
         <%= f.attachment_field :image %>
-        <% unless @item.image.present? %>
-          <span>選択されていません</span>
-        <% end %>
       </div>
 
       <div class="col-md-4 col-md-offset-2">

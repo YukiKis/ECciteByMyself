@@ -1,20 +1,23 @@
+<% provide(:title, "#{ @customer.full_name}さんの会員詳細") %>
 <div class="col-md-10 col-md-offset-1">
   <h3><span><%= @customer.full_name %>さんの会員詳細</span></h3>
-  <table class="table table-noborder">
-    <tr><th>顧客ID</th>
-    <td><%= @customer.id %> 
-      <% if @customer.is_active %>
-        <span class="label label-primary">有効会員</span>
-      <% else %>
-        <span class="label label-danger">退会会員</span>
-      <% end %>
-    </td></tr>
-    <tr><th>氏名</th><td><%= @customer.full_name_with_space %></td></tr>
-    <tr><th>フリガナ</th><td><%= @customer.full_name_kana_with_space %></td></tr>
-    <tr><th>郵便番号</th><td><%= @customer.postcode %></td></td></tr>
-    <tr><th>住所</th><td><%= @customer.address %></td></tr>
-    <tr><th>電話番号</th><td><%= @customer.tel %></td></tr>
-    <tr><th>メールアドレス</th><td><%= @customer.email %></td></tr>
+  <table class="table no-border">
+    <tr class="row">
+      <th class="col-md-3">顧客ID</th>
+      <td class="col-md-9"><%= @customer.id %> 
+        <% if @customer.is_active %>
+          <span class="label label-primary">有効会員</span>
+        <% else %>
+          <span class="label label-danger">退会会員</span>
+        <% end %>
+      </td>
+    </tr>
+    <tr class="row"><th class="col-md-3">氏名</th><td class="col-md-9"><%= @customer.full_name_with_space %></td></tr>
+    <tr class="row"><th class="col-md-3">フリガナ</th><td class="col-md-9"><%= @customer.full_name_kana_with_space %></td></tr>
+    <tr class="row"><th class="col-md-3">郵便番号</th><td class="col-md-9"><%= @customer.postcode %></td></td></tr>
+    <tr class="row"><th class="col-md-3">住所</th><td class="col-md-9"><%= @customer.address %></td></tr>
+    <tr class="row"><th class="col-md-3">電話番号</th><td class="col-md-9"><%= @customer.tel %></td></tr>
+    <tr class="row"><th class="col-md-3">メールアドレス</th><td class="col-md-9"><%= @customer.email %></td></tr>
   </table>
   <%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn btn-primary" %>
   <%= link_to "注文履歴一覧を見る", admin_orders_path, class: "btn btn-primary " %>

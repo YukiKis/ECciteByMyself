@@ -4,7 +4,7 @@
   <td><%= order_item.amount %></td>
   <td><%= order_item.subtotal %></td>
   <%= form_with model: order_item, url: admin_order_item_path(order_item), local: true do |f| %>
-    <td><%= f.select :status, ["着手不可", "製作待ち", "製作中", "製作完了"], { selected: order_item.status }, { id: "make-status-#{order_item.id}" } %></td>
+    <td><%= f.select :status, ["着手不可", "製作待ち", "製作中", "製作完了"], { selected: order_item.status }, { class: "form-control", id: "make-status-#{order_item.id}" } %></td>
     <td><%= f.submit "更新", class: "btn btn-primary", id: "update-make-status-#{order_item.id}" %></td>
   <% end %>
 </tr>

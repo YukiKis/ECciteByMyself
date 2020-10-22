@@ -1,3 +1,4 @@
+<% provide(:title, "商品一覧")%>
 <div class="col-md-10 col-md-offset-1">
   <h3><span>商品一覧</span></h3>
 
@@ -9,5 +10,6 @@
     <tbody>
       <%= render @items%>
     </tbody>
-  </table>
+  </table>    
+  <%= paginate @items %>
 </div>

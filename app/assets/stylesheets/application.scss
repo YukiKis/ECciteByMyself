@@ -16,15 +16,34 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-.noborder{ 
-  border-top: 0px !important;
-  border-bottom: 0px !important;
+table.no-border tr th, td {
+  border: 0px !important;
 }
 
-h3 span{
-  background-color: #D3D3D3;
+h3 span {
+  background-color: #d3d3d3;
 }
 
-table thead{ 
+table thead {
   background-color: #eeeeee;
+}
+
+header {
+  a {
+    text-decoration: none;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  &.btn {
+    text-decoration: none;
+  }
+}
+
+.jumbotron{
+  background-image: url("rails.png");
+  background-size: cover;
+  background-position: center;
 }

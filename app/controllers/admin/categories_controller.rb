@@ -1,6 +1,6 @@
 class Admin::CategoriesController < ApplicationController
   def new
-    @categories = Category.all
+    @categories = Category.page(params[:page])
     @category = Category.new
   end
 

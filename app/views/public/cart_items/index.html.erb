@@ -1,6 +1,9 @@
 
-<%# <%= render "layouts/error", resource: cart_item %> %>
-<h3>ショッピングカート</h3><%= link_to "カートを空にする", cart_items_all_path, method: :delete, class: "btn btn-danger"  %>
+<%#= render "layouts/error", resource: cart_item %>
+<div class="col-md-10 col-md-offset-1">
+<h3 style="position: relative; margin-bottom: 30px;">
+  <span>ショッピングカート</span><%= link_to "カートを空にする", cart_items_all_path, method: :delete, class: "btn btn-danger", style: "position: absolute; right: 0;"%>
+</h3>
 <table class="table">
   <thead>
     <tr>
@@ -28,3 +31,4 @@
   <%= link_to "情報入力に進む", new_order_path, class: "btn btn-success", disabled: true %>
 <% end %>
 
+</div>

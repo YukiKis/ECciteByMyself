@@ -7,9 +7,12 @@ class Public::CartItemsController < ApplicationController
   
   def create
     if customer_signed_in?
-      @cart_items = current_customer.cart_items.new(cart_item_params)
-      if @cart_items.save
+      @cart_item = current_customer.cart_items.new(cart_item_params)
+      if @cart_item.save
         redirect_to cart_items_path
+      else
+        @item = Item.find(cart_item_params[:item_id])
+        render "public/items/show"
       end
     else
       redirect_to new_customer_session_path

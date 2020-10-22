@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :items
     resources :categories, only: [:new, :edit, :update, :create]
     resources :customers, only: [:index, :show, :edit, :update]
-    get "orders/today", as: "orders_today"
+    get "/orders/today", as: "orders_today"
     resources :orders, only: [:index, :show, :update]
     resources :order_items, only: [:update]
   end

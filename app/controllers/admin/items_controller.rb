@@ -1,6 +1,6 @@
 class Admin::ItemsController < ApplicationController
   def index
-    @items = Item.all
+    @items = Item.page(params[:page])
   end
 
   def show
@@ -29,7 +29,7 @@ class Admin::ItemsController < ApplicationController
   def create
     params = item_params
     params[:category] = Category.find_by(name: item_params[:category])
-    params[:image_id] = "IMAGE"
+    params[:image] ||= "IMAGE"
     @item = Item.new(params)
     if @item.save
       redirect_to admin_items_path
