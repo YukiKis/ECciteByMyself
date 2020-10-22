@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     delete "cart_items/destroy_all", to: "cart_items#destroy_all", as: "cart_items_all"
     resources :cart_items, only: [:index, :create, :update, :destroy]
     post "orders/log", to: "orders#log", as: "orders_log"
+    get "orders/log", to: "orders#new"
     post "orders/check", to: "orders#check", as: "orders_check"
     get "orders/thanks", to: "orders#thanks", as: "orders_thanks"
     get "customers/quit", to: "customers#quit", as: "quit"

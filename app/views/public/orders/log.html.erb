@@ -46,7 +46,7 @@
   </div>
 
 <div class="text-center" style="margin-top: 50px;">
-  <%= form_with model: @order, local: true do |f| %>
+  <%= form_with model: @order, method: :post, local: true do |f| %>
     <%= f.submit "購入を確定する", class: "btn btn-success" %>
   <% end %>
 </div>
