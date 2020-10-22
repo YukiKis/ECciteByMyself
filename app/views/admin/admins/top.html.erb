@@ -1,5 +1,20 @@
+<% provide(:title, "管理者トップ") %>
 <div class="col-md-12">
-  <h3><span>管理者画面</span></h3>
-
-  <h1>本日の注文件数  <%= @count %>件</h1>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+       <h3><span>管理者画面</span></h3>
+    </div>
+  </div>
+  
+  <div class="row" style="padding-top: 30px;">
+    <div class="col-md-3">
+      <span style="font-size: 26px; font-weight: bold;">本日の注文件数</span>
+      <%= link_to "詳細を見る", today_order_path %>
+    </div>
+    <div class="col-md-9">
+      <p style="font-size: 26px;"><u><%= @count %></u>件</p>
+    </div>
+  </div>
+ 
+  
 </div>

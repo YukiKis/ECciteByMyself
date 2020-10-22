@@ -13,6 +13,8 @@ class Order < ApplicationRecord
   validates :how_to_pay, presence: true, inclusion: { in: ["クレジットカード", "銀行振込"] }
   validates :status, presence: true, inclusion: {in: ["入金待ち", "入金確認", "製作中", "発送準備中", "発送済み"] }
 
+  scope :today, ->(){ where("created_at >= date.Today") }
+
   def set_order_items(customer)
     customer = Customer.find(customer.id)
     customer.cart_items.each do |item|

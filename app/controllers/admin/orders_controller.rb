@@ -14,6 +14,11 @@ class Admin::OrdersController < ApplicationController
     redirect_to admin_order_path
   end
 
+  def today
+    @orders = Order.today
+    render "index"
+  end
+
   private
     def order_params
       params.require(:order).permit(:status)
