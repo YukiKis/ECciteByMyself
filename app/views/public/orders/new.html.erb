@@ -1,32 +1,63 @@
 
-<%= render "layouts/error", resource: @order %>
-<h3><span>注文情報入力</span></h3>
-<%= form_with model: @order, url: orders_log_path, local: true do |f| %>
-  <h3>支払方法</h3>
-  <%= f.radio_button :how_to_pay, :"クレジットカード", checked: true %>
-  <%= f.label :how_to_pay_クレジットカード, "クレジットカード" %>
-  <%= f.radio_button :how_to_pay, :"銀行振込" %>
-  <%= f.label :how_to_pay_銀行振込, "銀行振込" %>
+<div class="col-md-12">
 
-  <h3>お届け先</h3>
-  <%= f.radio_button :address_select, "1", checked: true %>
-  <%= f.label :address_select_1, "ご自身の住所" %>
-  <br>
-  <%= current_customer.postcode %> <%= current_customer.address %><br><%= current_customer.full_name %>
-  <br>
-  <%= f.radio_button :address_select, "2" %>
-  <%= f.label :address_select_2, "登録済み住所から選択" %>
-  <br>
-  <%= f.select :address_where, Delivery.for_select(current_customer) %>
-  <br>
-  <%= f.radio_button :address_select, "3" %>
+  <%= render "layouts/error", resource: @order %>
 
-  <%= f.label :address_select_3, "新しいお届け先", class: "remote-input", remote: true %>
-    <%= f.label :deliver_postcode, "郵便番号(ハイフンなし)" %>
-    <%= f.text_field :deliver_postcode %><br>
-    <%= f.label :deliver_address, "住所" %>
-    <%= f.text_field :deliver_address %>
-    <%= f.label :deliver_name, "宛名" %> 
-    <%= f.text_field :deliver_name %>
-  <%= f.submit "確認画面へ進む", class: "btn btn-primary"%>
-<% end %>
+  <h3><span>注文情報入力</span></h3>
+
+  <%= form_with model: @order, url: orders_log_path, local: true do |f| %>
+    <h3><b>支払方法</b></h3>
+    <div class="form-group form-inline" style="padding: 0 30px;">
+      <%= f.radio_button :how_to_pay, :"クレジットカード", checked: true, class: "form-control" %><%= f.label :how_to_pay_クレジットカード, "クレジットカード", class: "control-label" %><br>
+      <%= f.radio_button :how_to_pay, :"銀行振込", class: "form-control" %><%= f.label :how_to_pay_銀行振込, "銀行振込", class: "control-label" %>
+    </div>
+
+    <h3><b>お届け先</b></h3>
+    <div class="form-group form-inline" style="padding: 0 30px;">
+      <%= f.radio_button :address_select, "1", checked: true %>
+      <%= f.label :address_select_1, "ご自身の住所" %>
+      <%= current_customer.postcode %> <%= current_customer.address %><br><%= current_customer.full_name %>
+    </div>
+    <div class="form-group" style="padding: 0 30px;">
+      <%= f.radio_button :address_select, "2" %>
+      <%= f.label :address_select_2, "登録済み住所から選択" %><br>
+      <%= f.select :address_where, Delivery.for_select(current_customer), {}, { class: "form-control" } %>
+    </div>
+    
+    <div class="form-group form-inline" style="padding: 0 30px;">
+      <%= f.radio_button :address_select, "3" %>
+      <%= f.label :address_select_3, "新しいお届け先", class: "remote-input", remote: true %>
+    </div>
+
+    <div class="row" style="margin: 0 30px 15px; padding: 0 30px;">
+      <div class="col-md-3">
+        <%= f.label :deliver_postcode, "郵便番号(ハイフンなし)", class: "control-label" %>
+      </div>
+      <div class="col-md-9">
+        <%= f.text_field :deliver_postcode, class: "form-control", style: "width: 300px;" %>
+      </div>
+    </div>
+
+    <div class="row" style="margin: 0 30px 15px; padding: 0 30px;">
+      <div class="col-md-3">
+        <%= f.label :deliver_address, "住所" %>
+      </div>
+      <div class="col-md-9">
+        <%= f.text_field :deliver_addressm, class: "form-control", style: "width: 300px" %>
+      </div>
+    </div>
+
+    <div class="row" style="margin: 0 30px; padding: 0 30px;">
+      <div class="col-md-3">
+        <%= f.label :deliver_name, "宛名" %> 
+      </div>
+      <div class="col-md-9">
+        <%= f.text_field :deliver_name, class: "form-control", style: "width: 300px;" %>
+      </div>
+     </div>
+
+    <div class="col-md-12 text-center" style="margin-top: 50px;">
+      <%= f.submit "確認画面へ進む", class: "btn btn-primary"%>
+    </div>
+  <% end %>
+</div>

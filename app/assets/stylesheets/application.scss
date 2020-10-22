@@ -16,8 +16,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-table.no-border tr th, td {
-  border: 0px !important;
+table{
+  &.no-border tr th, td {
+  border: 0px;
+  }
 }
 
 h3 span {

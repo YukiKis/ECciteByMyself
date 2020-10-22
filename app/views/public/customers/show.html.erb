@@ -1,14 +1,28 @@
 <div class="col-md-7">
-  <h3><span>マイぺージ</span></h3>
-  <h3><b>登録情報</b> <%= link_to "編集する", edit_customers_path, class: "btn btn-primary" %> <%= link_to "パスワードを変更する", edit_customer_password_path, class: "btn btn-primary" %> </h3>
-  <table class="table">
-    <tr><th>氏名</th><td><%= @customer.full_name_with_space %></td></tr>
-    <tr><th>カナ</th><td><%= @customer.full_name_kana_with_space %></td></tr>
-    <tr><th>郵便番号</th><td><%= @customer.postcode %></td></tr>
-    <tr><th>住所</th><td><%= @customer.address %></td></tr>
-    <tr><th>電話番号</th><td><%= @customer.tel %></td></tr>
-    <tr><th>メールアドレス</th><td><%= @customer.email %></td></tr>
+  <h3 style="margin-left: 100px;"><span>マイぺージ</span></h3>
+  <h4><b>登録情報</b> <%= link_to "編集する", edit_customers_path, class: "btn btn-primary" %> <%= link_to "パスワードを変更する", edit_customer_password_path, class: "btn btn-primary" %> </h4>
+  <table class="table table-bordered">
+    <tr class="row"><th class="col-md-3" style="background-color: #eeeeee">氏名</th><td class="col-md-9"><%= @customer.full_name_with_space %></td></tr>
+    <tr class="row"><th class="col-md-3" style="background-color: #eeeeee">カナ</th><td class="col-md-9"><%= @customer.full_name_kana_with_space %></td></tr>
+    <tr class="row"><th class="col-md-3" style="background-color: #eeeeee">郵便番号</th><td class="col-md-9"><%= @customer.postcode %></td></tr>
+    <tr class="row"><th class="col-md-3" style="background-color: #eeeeee">住所</th><td class="col-md-9"><%= @customer.address %></td></tr>
+    <tr class="row"><th class="col-md-3" style="background-color: #eeeeee">電話番号</th><td class="col-md-9"><%= @customer.tel %></td></tr>
+    <tr class="row"><th class="col-md-3" style="background-color: #eeeeee">メールアドレス</th><td class="col-md-9"><%= @customer.email %></td></tr>
   </table>
-  <h3>配送先 <%= link_to "一覧を見る", deliveries_path, class: "btn btn-primary" %></h3>
-  <h3>注文履歴 <%= link_to "一覧を見る", orders_path, class: "btn btn-primary" %></h3>
+  <div class="row">
+    <div class="col-md-2">
+      <h4><b>配送先</b></h4>
+    </div>
+    <div class="col-md-10">
+      <h4><%= link_to "一覧を見る", deliveries_path, class: "btn btn-primary" %></h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <h4><b>注文履歴</b></h4>
+    </div>
+    <div class="col-md-10">
+      <h4><%= link_to "一覧を見る", orders_path, class: "btn btn-primary" %></h4>
+    </div>
+  </div>
 </div>
