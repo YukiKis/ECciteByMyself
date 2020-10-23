@@ -1,4 +1,5 @@
 <tr>
+  <td><%= item.id %></td>
   <td><%= link_to item.name, admin_item_path(item) %></td>
   <td><%= item.price.to_s(:delimited) %></td>
   <td><%= item.category.name %></td>

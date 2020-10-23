@@ -1,8 +1,12 @@
 class Public::CartItemsController < ApplicationController
   before_action :authenticate_customer!
+  before_action :setup
+
+  def setup
+    @cart_items = current_customer.cart_items
+  end
 
   def index
-    @cart_items = current_customer.cart_items.all
   end
   
   def create
@@ -22,20 +26,20 @@ class Public::CartItemsController < ApplicationController
   def update
     cart_item = current_customer.cart_items.find(params[:id])
     cart_item.update(cart_item_params)
-    redirect_to cart_items_path
+    @cart_items.reload
   end
 
   def destroy
     cart_item = current_customer.cart_items.find(params[:id])
     cart_item.delete
-    redirect_to cart_items_path
+    @cart_items.reload
   end
 
   def destroy_all
     current_customer.cart_items.each do |cart_item|
       cart_item.delete
     end
-    redirect_to cart_items_path
+    @cart_items.reload
   end
   
   protected

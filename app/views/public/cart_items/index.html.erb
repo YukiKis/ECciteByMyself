@@ -3,13 +3,13 @@
 <%#= render "layouts/error", resource: cart_item %>
 <div class="col-md-10 col-md-offset-1">
 <h3 style="position: relative; margin-bottom: 30px;">
-  <span>ショッピングカート</span><%= link_to "カートを空にする", cart_items_all_path, method: :delete, class: "btn btn-danger", style: "position: absolute; right: 0;"%>
+  <span>ショッピングカート</span><%= link_to "カートを空にする", cart_items_all_path, method: :delete, class: "btn btn-danger", style: "position: absolute; right: 0;", remote: true %>
 </h3>
 <table class="table table-bordered">
   <thead class="row">
     <th class="col-md-4">商品名</th><th class="col-md-2">単価(税込)</th><th class="col-md-2">数量</th><th class="col-md-2">小計</th><th class="col-md-2"></th>
   </thead>
-  <tbody>
+  <tbody class="cart-item-list">
     <%= render @cart_items %>
   </tbody>
 </table>
@@ -20,7 +20,7 @@
   </div>
   <div class="col-md-3 col-md-offset-6">
     <table class="table table-bordered">
-      <tr><th style="background-color: #eeeeee">合計金額</th><td><%= CartItem.total_price_with_tax(current_customer).to_s(:delimited) %></td></tr>
+      <tr><th style="background-color: #eeeeee">合計金額</th><td class="cart-item-total-price"><%= CartItem.total_price_with_tax(current_customer).to_s(:delimited) %></td></tr>
     </table>
   </>
 </div>

@@ -1,0 +1,4 @@
+<%= form_with model: order, url: admin_order_path(order), class: "form-inline", remote: true do |f| %>
+  <%= f.select :status, ["入金待ち", "入金確認", "製作中", "発送準備中", "発送済み"], { selected: order.status }, { class: "form-control" } %>
+  <%= f.submit "更新", class: "btn btn-primary", id: "update-order-status" %>
+<% end %>

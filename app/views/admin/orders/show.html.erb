@@ -7,11 +7,8 @@
     <tr class="row"><th class="col-md-2">配送先</th><td class="col-md-10">〒<%= @order.deliver_postcode %> <%= @order.deliver_address %><br><%= @order.deliver_name %></td></tr>
     <tr class="row"><th class="col-md-2">支払方法</th><td class="col-md-10"><%= @order.how_to_pay %></td></tr>
     <tr class="row"><th class="col-md-2">注文ステータス</th>
-    <td class="col-md-10">
-      <%= form_with model: @order, url: admin_order_path(@order), class: "form-inline", local: true do |f| %>
-        <%= f.select :status, ["入金待ち", "入金確認", "製作中", "発送準備中", "発送済み"], { selected: @order.status }, { class: "form-control" } %>
-        <%= f.submit "更新", class: "btn btn-primary", id: "update-order-status" %>
-      <% end %>
+    <td class="col-md-10" id="order-status">
+      <%= render "admin/orders/order-status", order: @order %>
     </td>
     </tr>
   </table>

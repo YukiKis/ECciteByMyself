@@ -20,7 +20,7 @@ class Order < ApplicationRecord
     customer.cart_items.each do |item|
       order_item = self.order_items.new(item: item.item)
       order_item.amount = item.amount
-      order_item.price = item.price_with_tax
+      order_item.price = item.price
       order_item.save
     end
   end

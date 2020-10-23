@@ -27,15 +27,15 @@ class Admin::ItemsController < ApplicationController
   end
 
   def create
-    params = item_params
-    params[:category] = Category.find_by(name: item_params[:category])
-    params[:image] ||= "IMAGE"
-    @item = Item.new(params)
+    # imageMagickがないため？　エラー
+    @item = Item.new(item_params.merge({ category: Category.find_by(item_params), image: "IMAGE" }))
+    @item.category = Category.find_by(name: item_params[:category])
     if @item.save
       redirect_to admin_items_path
     else
       render "new"
     end
+    debugger
   end
 
   private

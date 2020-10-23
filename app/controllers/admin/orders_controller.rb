@@ -1,6 +1,6 @@
 class Admin::OrdersController < ApplicationController
   def index
-    @orders = Order.page(params[:page])
+    @orders = Order.page(params[:page]).order(id: :desc)
   end
 
   def show
@@ -11,11 +11,10 @@ class Admin::OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     @order.update(order_params)
-    redirect_to admin_order_path
   end
 
   def today
-    @orders = Order.today
+    @orders = Order.today.page(params[:page]).order(id: :desc)
     render "index"
   end
 

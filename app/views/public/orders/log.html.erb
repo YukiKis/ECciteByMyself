@@ -1,8 +1,8 @@
 <% provide(:title, "注文情報確認") %>
 <div class="col-md-12">
-  <% unless @order.valid? %>
-    <%= render "layouts/error", resource: @order %>
-  <% end %>
+  <%# <% unless @order.valid? %>
+    <%#= render "layouts/error", resource: @order %>
+  <%# end %>
   <h3 style="margin-left: 50px;"><span>注文情報確認</span></h3>
   <div class="row">
     <div class="col-md-8">
@@ -12,7 +12,7 @@
         </thead>
         <tbody>
           <tr>
-            <%= render @order_items %>
+            <%= render partial: "public/order_items/order_item", collection: @order_items %>
           </tr>
         </tbody>
       </table>
@@ -20,9 +20,9 @@
     
     <div class="col-md-3 col-md-offset-1">
       <table class="table table-bordered">
-        <tr><th style="background-color: #eeeeee">送料</th><td><%= @order.deliver_fee %></td></tr>
-        <tr><th style="background-color: #eeeeee">商品合計</th><td><%= @order.total_price %></td></tr>
-        <tr><th style="background-color: #eeeeee">請求金額</th><td><%= @order.get_whole_total_price %></td></tr>
+        <tr><th style="background-color: #eeeeee">送料</th><td><%= @order.deliver_fee.to_s(:delimited) %></td></tr>
+        <tr><th style="background-color: #eeeeee">商品合計</th><td><%= @total_price.to_s(:delimited) %></td></tr>
+        <tr><th style="background-color: #eeeeee">請求金額</th><td><%= (@total_price + @order.deliver_fee).to_s(:delimited) %></td></tr>
       </table>
     </div>
   </div>
@@ -32,7 +32,7 @@
       <h4><b>支払方法</b></h4>
     </div>
     <div class="col-md-10">
-      <h4><%= @order.how_to_pay %></h4>
+      <h4><%= session[:how_to_pay] %></h4>
     </div>
   </div>
 
@@ -41,7 +41,7 @@
       <h4><b>お届け先</b></h4>
     </div>
     <div class="col-md-10">
-      <h4><%= @order.deliver_show %></h4>
+      <h4><%= session[:postcode] %>&nbsp;<%= session[:address] %><br><%= session[:name] %></h4>
     </div>
   </div>
 

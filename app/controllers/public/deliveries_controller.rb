@@ -1,5 +1,5 @@
 class Public::DeliveriesController < ApplicationController
-  before_action :setup, only: [:index, :show, :create]
+  before_action :setup, except: :edit
   before_action :authenticate_customer!
 
   def setup
@@ -12,10 +12,11 @@ class Public::DeliveriesController < ApplicationController
   end
 
   def create 
-    @deliver_new = @customer.deliveries.new(delivery_params)
-    if @deliver_new.save
+    @delivery_new = @customer.deliveries.new(delivery_params)
+    if @delivery_new.save
       redirect_to deliveries_path
     else
+      @deliveries = @customer.deliveries.all
       render "index"
     end
   end
@@ -36,7 +37,8 @@ class Public::DeliveriesController < ApplicationController
   def destroy
     delivery = Delivery.find(params[:id])
     delivery.destroy
-    redirect_to deliveries_path
+    @delivery_new = @customer.deliveries.new
+    @deliveries = @customer.deliveries.all
   end
 
   def delivery_params

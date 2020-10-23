@@ -34,7 +34,7 @@
         <%= f.label :deliver_postcode, "郵便番号(ハイフンなし)", class: "control-label" %>
       </div>
       <div class="col-md-9">
-        <%= f.text_field :deliver_postcode, class: "form-control", style: "width: 300px;" %>
+        <%= f.text_field :deliver_postcode, class: "form-control", style: "width: 300px;",  disabled: true %>
       </div>
     </div>
 
@@ -43,7 +43,7 @@
         <%= f.label :deliver_address, "住所" %>
       </div>
       <div class="col-md-9">
-        <%= f.text_field :deliver_addressm, class: "form-control", style: "width: 300px" %>
+        <%= f.text_field :deliver_address, class: "form-control", style: "width: 300px", disabled: true %>
       </div>
     </div>
 
@@ -52,12 +52,12 @@
         <%= f.label :deliver_name, "宛名" %> 
       </div>
       <div class="col-md-9">
-        <%= f.text_field :deliver_name, class: "form-control", style: "width: 300px;" %>
+        <%= f.text_field :deliver_name, class: "form-control", style: "width: 300px;",  disabled: true %>
       </div>
      </div>
 
     <div class="col-md-12 text-center" style="margin-top: 50px;">
-      <%= f.submit "確認画面へ進む", class: "btn btn-primary", data: { turbolinks: :off } %>
+      <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
     </div>
   <% end %>
 </div>
