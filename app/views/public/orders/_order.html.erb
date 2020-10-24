@@ -1,12 +1,12 @@
 <tr>
-  <td style="vertical-align: middle;"><%= order.created_at.strftime("%Y/%m/%d") %></td>
-  <td style="vertical-align: middle;"><%= order.deliver_postcode %><br><%= order.deliver_address %><br><%= order.deliver_name %></td>
-  <td style="vertical-align: middle;">
+  <td><%= order.created_at.strftime("%Y/%m/%d") %></td>
+  <td><%= order.deliver_postcode %><br><%= order.deliver_address %><br><%= order.deliver_name %></td>
+  <td>
     <% order.order_items.each do |order_item| %>
       <%= order_item.item.name %><br>
     <% end %>
   </td>
-  <td style="vertical-align: middle;"><%= order.get_whole_total_price.to_s(:delimited) %>円</td>
-  <td style="vertical-align: middle;"><%= order.status %></td>
-  <td class="text-center" style="vertical-align: middle;"><%= link_to "表示する", order_path(order), class: "btn btn-primary" %></td>
+  <td><%= order.get_whole_total_price.to_s(:delimited) %>円</td>
+  <td><%= order.status %></td>
+  <td class="text-center"><%= link_to "表示する", order_path(order), class: "btn btn-primary" %></td>
 </tr>

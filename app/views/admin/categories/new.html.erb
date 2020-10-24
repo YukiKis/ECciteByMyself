@@ -6,7 +6,7 @@
     <%= form_with model: @category, url: admin_categories_path, class: "form-inline", local: true do |f| %>
       <%= f.label :name, "ジャンル" %>
       <%= f.text_field :name, class: "form-control" %>
-      <%= f.radio_button :is_active, true, class: "form-contrl" %>
+      <%= f.radio_button :is_active, true, class: "form-control" %>
       <%= f.label :is_active_true, "有効", class: "control-label" %>
       <%= f.radio_button :is_active, false, class: "form-control" %>
       <%= f.label :is_active_false, "無効", class: "control-label" %>
@@ -16,7 +16,7 @@
 
   <div class="row">
     <div class="col-md-5">
-      <table class="table">
+      <table class="table table-category">
         <thead>
           <tr><th>ジャンル</th><th>状態</th><th></th></tr>
       </thead>

@@ -1,3 +1,19 @@
 // Place all the styles related to the admin/admins controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.order-amount-title{
+  padding-top: 30px;
+  p{
+    font-size: 26px;    
+  }
+}
+
+.order-amount{
+  p{
+    font-size: 26px;
+    a{
+      color: inherit;
+    }
+  }
+}

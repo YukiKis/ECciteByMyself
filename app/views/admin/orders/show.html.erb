@@ -1,15 +1,25 @@
 <% provide(:title, "注文履歴詳細") %>
 <div class="col-md-12">
   <%= render "layouts/error", resource: @order %>
-  <h3><span style="margin-left: 100px;">注文履歴詳細</span></h3>
-  <table class="table no-border">
-    <tr class="row"><th class="col-md-2">購入者</th><td class="col-md-10"><%= link_to @order.customer.full_name, admin_customer_path(@order.customer) %></td></tr>
-    <tr class="row"><th class="col-md-2">配送先</th><td class="col-md-10">〒<%= @order.deliver_postcode %> <%= @order.deliver_address %><br><%= @order.deliver_name %></td></tr>
-    <tr class="row"><th class="col-md-2">支払方法</th><td class="col-md-10"><%= @order.how_to_pay %></td></tr>
-    <tr class="row"><th class="col-md-2">注文ステータス</th>
-    <td class="col-md-10" id="order-status">
-      <%= render "admin/orders/order-status", order: @order %>
-    </td>
+  <h3 class="order-show-title"><span>注文履歴詳細</span></h3>
+  <table class="table no-border no-color-th">
+    <tr class="row">
+      <th class="col-md-2">購入者</th>
+      <td class="col-md-10"><%= link_to @order.customer.full_name, admin_customer_path(@order.customer) %></td>
+      </tr>
+    <tr class="row">
+      <th class="col-md-2">配送先</th>
+      <td class="col-md-10">〒<%= @order.deliver_postcode %>&nbsp;<%= @order.deliver_address %><br><%= @order.deliver_name %></td>
+    </tr>
+    <tr class="row">
+      <th class="col-md-2">支払方法</th>
+      <td class="col-md-10"><%= @order.how_to_pay %></td>
+    </tr>
+    <tr class="row">
+      <th class="col-md-2">注文ステータス</th>
+      <td class="col-md-10" id="order-status">
+        <%= render "admin/orders/order-status", order: @order %>
+      </td>
     </tr>
   </table>
 
@@ -26,10 +36,10 @@
     </div>
   
     <div class="col-md-4" style="position: absolute; bottom: 0; right: 0;">
-      <table class="table no-border">
-        <tr style="font-size: 18px;"><th><b>商品合計</th><td class="text-right"><%= @order.total_price.to_s(:delimited) %>円</td></tr>
-        <tr style="font-size: 18px;"><th><b>送料</b></th><td class="text-right"><%= @order.deliver_fee.to_s(:delimited) %>円</td></tr>
-        <tr style="font-size: 18px;"><th><b>請求合計金額</b></th><td class="text-right"><%= @order.get_whole_total_price.to_s(:delimited) %>円</td></tr>
+      <table class="table no-border no-color-th order-pay-info">
+        <tr><th><b>商品合計</th><td class="text-right"><%= @order.total_price.to_s(:delimited) %>円</td></tr>
+        <tr><th><b>送料</b></th><td class="text-right"><%= @order.deliver_fee.to_s(:delimited) %>円</td></trstyle=>
+        <tr><th><b>請求合計金額</b></th><td class="text-right"><b><%= @order.get_whole_total_price.to_s(:delimited) %>円</b></td></tr>
       </table>
     </div>  
 </div>

@@ -40,15 +40,20 @@ header {
 }
 
 a {
-  color: inherit;
   text-decoration: underline;
   &.btn {
     text-decoration: none;
   }
 }
 
-.jumbotron{
-  background-image: url("rails.png");
-  background-size: cover;
-  background-position: center;
+table.no-color-th th{
+  background-color: #ffffff;
+}
+
+.item-show-title{
+  margin-bottom: 100px;
+}
+
+div.with-margin-top{
+  margin-top: 100px;
 }

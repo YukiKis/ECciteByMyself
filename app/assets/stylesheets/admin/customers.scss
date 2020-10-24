@@ -1,3 +1,19 @@
 // Place all the styles related to the admin/customers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.customer-index-title{
+  margin-left: 150px;
+}
+
+table tbody tr td a{
+  color: inherit;
+}
+
+.control-with-margin-right-30{
+  margin-right: 30px;
+}
+
+.control-with-margin-right-10{
+  margin-right: 10px;
+}

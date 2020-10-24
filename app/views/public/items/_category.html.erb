@@ -1,8 +1,8 @@
-<table class="table" style="border: 1px solid #eeeeee">
+<table class="table category-table">
   <thead><tr><th>ジャンル検索</th></tr></thead>
   <tbody>
     <% Category.all.each do |category| %>
-      <tr><td><%= link_to category.name, search_path(category), style: "text-decoration: none;" %></td></tr>
+      <tr><td><%= link_to category.name, search_path(category) %></td></tr>
     <% end %>
   </tbody>
 </table>

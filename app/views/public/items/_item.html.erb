@@ -2,6 +2,6 @@
   <%= link_to item_path(item) do %>
     <%= attachment_image_tag item, :image, :fill, 200, 150, format: "jpg", fallback: "noimage.jpg", size: "200x150" %>
   <% end %>
-  <p style="font-weight: bold"><%= item.name %></p>
-  <p style="font-weight: bold">¥<%= item.price.to_s(:delimited) %></p>
+  <p><b><%= item.name %></b></p>
+  <p><b>¥<%= item.price.to_s(:delimited) %></b></p>
 </div>

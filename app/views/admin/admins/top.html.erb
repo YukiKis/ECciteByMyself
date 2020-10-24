@@ -6,12 +6,12 @@
     </div>
   </div>
   
-  <div class="row" style="padding-top: 30px;">
+  <div class="row order-amount-title" style="padding-top: 30px;">
     <div class="col-md-3">
-      <span style="font-size: 26px; font-weight: bold;">本日の注文件数</span>
+      <p><b>本日の注文件数</b></p>
     </div>
-    <div class="col-md-9">
-      <p style="font-size: 26px;"><%= link_to admin_orders_today_path, id: "order-today" do %><%= @count %>件<% end %></p>
+    <div class="col-md-9 order-amount">
+      <p style="font-size: 26px;"><%= link_to admin_orders_today_path, id: "order-today" do %><%= @count %><% end %>件</p>
     </div>
   </div>
 </div>
