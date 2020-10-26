@@ -23,7 +23,7 @@
     </tr>
   </table>
 
-  <div class="row" style="relative">
+  <div class="row order-item-info-row">
     <div class="col-md-8">
       <table class="table no-border">
       <thead>
@@ -35,11 +35,11 @@
     </table>
     </div>
   
-    <div class="col-md-4" style="position: absolute; bottom: 0; right: 0;">
-      <table class="table no-border no-color-th order-pay-info">
+    <div class="col-md-4 order-pay-info">
+      <table class="table no-border no-color-th order-pay-info-table">
         <tr><th><b>商品合計</th><td class="text-right"><%= @order.total_price.to_s(:delimited) %>円</td></tr>
-        <tr><th><b>送料</b></th><td class="text-right"><%= @order.deliver_fee.to_s(:delimited) %>円</td></trstyle=>
-        <tr><th><b>請求合計金額</b></th><td class="text-right"><b><%= @order.get_whole_total_price.to_s(:delimited) %>円</b></td></tr>
+        <tr><th><b>送料</b></th><td class="text-right"><%= @order.deliver_fee.to_s(:delimited) %>円</td></tr>
+        <tr><th><b>請求金額合計</b></th><td class="text-right"><b><%= @order.get_whole_total_price.to_s(:delimited) %>円</b></td></tr>
       </table>
     </div>  
 </div>

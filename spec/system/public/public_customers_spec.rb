@@ -70,6 +70,17 @@ RSpec.describe "Public::Customers", type: :system do
         end
         expect(current_path).to eq root_path
       end
+      it "fails to login if it alredy quits" do
+        page.accept_confirm do
+          click_button "退会する"
+        end
+        visit new_customer_session_path
+        fill_in "customer[email]", with: customer1.email
+        fill_in "customer[password]", with: customer1.password
+        click_button "ログイン"
+        expect(page).to have_content "退会済み"
+        expect(current_path).to eq new_customer_session_path
+      end
     end
     context "on customer-edit page" do
       before do

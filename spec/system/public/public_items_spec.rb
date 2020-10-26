@@ -23,7 +23,7 @@ RSpec.describe "Public::Items", type: :system do
       end
       it "has items" do
         Item.all.each do |item|
-          # expect(page).to have_link "item-image-#{item.id}", href: item_path(item)
+          expect(page).to have_link "", href: item_path(item)
           expect(page).to have_content item.name
           expect(page).to have_content item.price
         end
@@ -32,13 +32,6 @@ RSpec.describe "Public::Items", type: :system do
         Category.all.each do |category|
           expect(page).to have_link category.name, href: search_path(category)
         end
-      end
-      it "leads to item-show page when clicking image" do
-        # Item.all.each do |item|
-        #   expect(page).to have_link "item-image-#{item.id}", href: item_path(item)
-        # end
-        # click_link "item-image-#{item.id}", href: item_path(item1)
-        # expect(current_path).to eq item_path(item1)
       end
     end
     context "on item_show_page" do
@@ -54,9 +47,9 @@ RSpec.describe "Public::Items", type: :system do
           expect(page).to have_link category.name, href: search_path(category)
         end
       end
-      # it "has image for an item" do
-      #   expect(page).to have_content "item-image-#{ item1.id }"
-      # end
+      it "has image for an item" do
+        expect(page).to have_css ".image"
+      end
       it "has item name" do
         expect(page).to have_content item1.name
       end

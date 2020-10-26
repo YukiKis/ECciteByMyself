@@ -32,7 +32,7 @@
       <h4><b>支払方法</b></h4>
     </div>
     <div class="col-md-10">
-      <h4><%= session[:how_to_pay] %></h4>
+      <h4><%= @how_to_pay %></h4>
     </div>
   </div>
 
@@ -47,6 +47,11 @@
 
 <div class="text-center" style="margin-top: 50px;">
   <%= form_with model: @order, method: :post, local: true do |f| %>
+    <%= f.hidden_field :how_to_pay, value: @how_to_pay%>
+    <%= f.hidden_field :address_select, value: @address_select%>
+    <%= f.hidden_field :postcode, value: @postcode %>
+    <%= f.hidden_field :address, value: @address %>
+    <%= f.hidden_field :name, value: @name %>
     <%= f.submit "購入を確定する", class: "btn btn-success" %>
   <% end %>
 </div>

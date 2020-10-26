@@ -33,10 +33,11 @@ RSpec.describe "Public::CartItems", type: :system do
       end
       it "has cart_item info" do
         customer1.cart_items.each do |cart_item|
+          expect(page).to have_css ".image"
           expect(page).to have_content cart_item.item.name
-          expect(page).to have_content (cart_item.item.price * 1.1).floor
+          expect(page).to have_content (cart_item.item.price * 1.1).floor.to_s(:delimited)
           expect(page).to have_content cart_item.amount
-          expect(page).to have_content cart_item.amount * ((cart_item.item.price * 1.1).floor)
+          expect(page).to have_content (cart_item.amount * (cart_item.item.price * 1.1).floor).to_s(:delimited)
         end
       end
       it "has field to change the amount" do
@@ -51,7 +52,7 @@ RSpec.describe "Public::CartItems", type: :system do
       end
       it "has '合計金額'" do
         expect(page).to have_content "合計金額"
-        expect(page).to have_content (@cart_item1.item.price * 1.1).floor * @cart_item1.amount + (@cart_item2.item.price * 1.1).floor * @cart_item2.amount
+        expect(page).to have_content ((@cart_item1.item.price * 1.1).floor * @cart_item1.amount + (@cart_item2.item.price * 1.1).floor * @cart_item2.amount).to_s(:delimited)
       end
       it "succeeds to change the amount" do
         fill_in "cart_item-1", with: 10

@@ -23,6 +23,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def log
+    #  order、order_itemがlog時点でCreateされてしまうため没
     #   @order = current_customer.orders.new
     #   @order.set_order_items(current_customer)
     #   @order.set_total_price
@@ -48,6 +49,7 @@ class Public::OrdersController < ApplicationController
     @order = current_customer.orders.new
     @order_items = current_customer.cart_items
     @total_price = CartItem.total_price_with_tax(current_customer)
+    #  sessionによる実装、突発的なリロードにも対応可能
     if request.post?
       session[:how_to_pay] = order_params[:how_to_pay]
       session[:address_select] = order_params[:address_select]
@@ -66,7 +68,27 @@ class Public::OrdersController < ApplicationController
          session[:address] = order_params[:deliver_address]
          session[:name] = order_params[:deliver_name]
       end
-    end    
+    end
+
+    # hidden_fieldによる実装、リロード等によるGet処理には対応不可
+    @how_to_pay = order_params[:how_to_pay]
+    @address_select = order_params[:address_select]
+    # case order_params[:address_select]
+    # when "1"
+    #   @postcode = current_customer.postcode
+    #   @address = current_customer.address
+    #   @name = current_customer.full_name
+    #   when "2"
+    #   order_place = order_params[:address_where].split
+    #   @postcode = order_place[0]
+    #   @address = order_place[1]
+    #   @name = order_place[2]
+    #   when "3"
+    #   @postcode = order_params[:deliver_postcode]
+    #   @address = order_params[:deliver_address]
+    #   @name = order_params[:deliver_name]
+    # end
+      debugger    
   end
 
   def create

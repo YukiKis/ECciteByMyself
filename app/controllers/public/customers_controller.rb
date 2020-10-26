@@ -25,16 +25,17 @@ class Public::CustomersController < ApplicationController
   end
 
   def out
-    current_customer.update(is_active_params)
+    current_customer.update(for_quit_params)
     session.clear
-    redirect_to root_path
+    redirect_to root_path, notice: "またのご利用お待ちしております。"
+    debugger
   end
 
   private
     def customer_params
       params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postcode, :address, :tel, :email)
     end
-    def is_active_params
+    def for_quit_params
       params.require(:customer).permit(:is_active)
     end
 end

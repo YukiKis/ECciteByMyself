@@ -1,7 +1,11 @@
 <header>
 <nav class="navbar navbar-default">
   <div class="navbar-header">
-    <%= link_to "LOGO", root_path %>
+    <% if admin_signed_in? %>
+      <%= link_to "LOGO", admin_top_path %>
+    <% else %>
+      <%= link_to "LOGO", root_path %>
+    <% end %>
     <button type="button", class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-content">
       <span class="sr-only">Toggle navigation</span>
       <span class="icon-bar"></span>

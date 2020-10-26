@@ -38,9 +38,9 @@ RSpec.describe "Public::Deliveries", type: :system do
         fill_in "delivery[name]", with: "HKT"
         click_button "登録する"
         expect(current_path).to eq deliveries_path
-        # expect(page).to have_content "9999999"
-        # expect(page).to have_content "北海道札幌市"
-        # expect(page).to have_content "HKT"
+        expect(page).to have_content "9999999"
+        expect(page).to have_content "北海道札幌市"
+        expect(page).to have_content "HKT"
       end
       it "has table-heading for delivery info" do
         expect(page).to have_content "郵便番号"

@@ -28,7 +28,9 @@ class Admin::ItemsController < ApplicationController
 
   def create
     # imageMagickがないため？　エラー
-    @item = Item.new(item_params.merge({ category: Category.find_by(item_params), image: "IMAGE" }))
+    params = item_params
+    params[:category] = Category.find_by(name: item_params[:name])
+    @item = Item.new(params)
     @item.category = Category.find_by(name: item_params[:category])
     if @item.save
       redirect_to admin_items_path

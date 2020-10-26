@@ -16,7 +16,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-table{
+table {
   &.no-border tr > th {
     border: 0px;
   }
@@ -46,14 +46,23 @@ a {
   }
 }
 
-table.no-color-th th{
+table.no-color-th th {
   background-color: #ffffff;
 }
 
-.item-show-title{
+.item-show-title {
   margin-bottom: 100px;
 }
 
-div.with-margin-top{
+div.with-margin-top {
   margin-top: 100px;
+}
+
+.registration-postcode-field,
+.registration-tel-field {
+  margin-right: 0;
+}
+
+.session-email-field {
+  margin-right: 0;
 }

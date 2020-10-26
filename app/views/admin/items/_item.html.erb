@@ -1,6 +1,6 @@
 <tr>
   <td><%= item.id %></td>
-  <td><%= link_to item.name, admin_item_path(item) %></td>
+  <td><%= link_to item.name, admin_item_path(item), data: { turbolinks: false } %></td>
   <td><%= item.price.to_s(:delimited) %></td>
   <td><%= item.category.name %></td>
   <td><%= item.status %></td>

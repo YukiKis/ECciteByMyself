@@ -9,7 +9,14 @@
 .order-show-title{
   margin-left: 100px;
 }
-
-table.order-pay-info{
-  font-size: 18px;
+div.order-item-info-row{
+  position: relative;
+  div.order-pay-info{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    table.order-pay-info-table{
+      font-size: 18px;
+    }
+  }
 }

@@ -122,7 +122,7 @@ RSpec.describe "Admin::Orders", type: :system do
         expect(page).to have_content @order1.deliver_fee
       end
       it "has '請求金額合計'" do
-        expect(page).to have_content @order1.get_whole_total_price
+        expect(page).to have_content @order1.get_whole_total_price.to_s(:delimited)
       end
       it "changes order_status" do
         select "発送済み", from: "order[status]"
