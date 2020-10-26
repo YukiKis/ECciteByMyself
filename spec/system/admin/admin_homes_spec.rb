@@ -40,6 +40,7 @@ RSpec.describe "Adnub::Homes", type: :system do
         expect(page).to have_content "本日の注文件数"
       end
       it "has counts of today's orders" do
+        expect(page).to have_content Order.today.count
       end
       it "has items-index" do
         expect(page).to have_link "商品一覧", href: admin_items_path

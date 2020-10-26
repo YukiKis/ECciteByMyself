@@ -45,5 +45,6 @@ RSpec.describe Order, type: :model do
       order1.status = nil
       expect(order1).to be_invalid
     end
+    
   end
 end

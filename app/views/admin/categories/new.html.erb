@@ -1,22 +1,31 @@
+<% provide(:title, "ジャンル一覧・追加") %>
 <div class="col-md-10 col-md-offset-1">
   <%= render "layouts/error", resource: @category %>
   <h3><span>ジャンル一覧・追加</span></h3>
-  <%= form_with model: @category, url: admin_categories_path, local: true do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <%= f.radio_button :is_active, true %>
-    <%= f.label :is_active_true, "有効" %>
-    <%= f.radio_button :is_active, false %>
-    <%= f.label :is_active_false, "無効" %>
-    <%= f.submit "追加", class: "btn btn-primary" %>
-  <% end %>
+  <div class="form-group">
+    <%= form_with model: @category, url: admin_categories_path, class: "form-inline", local: true do |f| %>
+      <%= f.label :name, "ジャンル" %>
+      <%= f.text_field :name, class: "form-control" %>
+      <%= f.radio_button :is_active, true, class: "form-control" %>
+      <%= f.label :is_active_true, "有効", class: "control-label" %>
+      <%= f.radio_button :is_active, false, class: "form-control" %>
+      <%= f.label :is_active_false, "無効", class: "control-label" %>
+      <%= f.submit "追加", class: "btn btn-primary" %>
+    <% end %>
+  </div>
 
-  <table class="table">
-    <thead>
-      <tr><th>ジャンル</th><th>状態</th><th></th></tr>
-    </thead>
-    <tbody>
-      <%= render @categories%>
-    </tbody>
-  </table>
+  <div class="row">
+    <div class="col-md-5">
+      <table class="table table-category">
+        <thead>
+          <tr><th>ジャンル</th><th>状態</th><th></th></tr>
+      </thead>
+      <tbody>
+        <%= render @categories%>
+      </tbody>
+    </table>
+
+    <%= paginate @categories%>
+    </div>
+  </div>
 </div>

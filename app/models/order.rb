@@ -13,14 +13,14 @@ class Order < ApplicationRecord
   validates :how_to_pay, presence: true, inclusion: { in: ["クレジットカード", "銀行振込"] }
   validates :status, presence: true, inclusion: {in: ["入金待ち", "入金確認", "製作中", "発送準備中", "発送済み"] }
 
-  scope :today, ->(){ where("created_at >= date.Today") }
+  scope :today, ->(){ where("created_at >= ?", Date.today) }
 
   def set_order_items(customer)
     customer = Customer.find(customer.id)
     customer.cart_items.each do |item|
       order_item = self.order_items.new(item: item.item)
       order_item.amount = item.amount
-      order_item.price = item.price_with_tax
+      order_item.price = item.price
       order_item.save
     end
   end
@@ -38,9 +38,9 @@ class Order < ApplicationRecord
   end
 
   def deliver_show
-    "#{ self.deliver_postcode } #{ self.deliver_address }\n#{ self.deliver_name }"
+    "#{ self.deliver_postcode} #{self.deliver_address } #{ self.deliver_name}"
   end
-
+  
   def date_show
     "#{ self.created_at.strftime("%Y/%m/%d %H:%M:%S") }"
   end

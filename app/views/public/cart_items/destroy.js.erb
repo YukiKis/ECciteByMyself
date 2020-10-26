@@ -1,0 +1,2 @@
+$(".cart-item-list").html(`<%= j(render @cart_items) %>`);
+$(".cart-item-total-price").text(`<%= CartItem.total_price_with_tax(current_customer) %>`);

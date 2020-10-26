@@ -3,14 +3,17 @@
 </div>
 
 <div class="col-md-9">
+  <div class="jumbotron">
   <p>
     ようこそ、NaganoCakeへ！<br>
     このサイトは、ケーキ販売のECサイトになります。<br>
     会員でない方も商品の閲覧はできますが、<br>
     購入には会員登録が必要になります。
   </p>
+  </div>
   <h3>オススメ商品</h3>
   <div class="row">
     <%= render @items %>
   </div>
+  <p class="text-right"><%= link_to "もっと見る＞", items_path %></p>
 </div>

@@ -1,6 +1,6 @@
 <tr>
-  <td><%= order_item.item.name %></td>
-  <td><%= order_item.price %></td>
+  <td><%= attachment_image_tag order_item.item, :image, :fill, 50, 30, format: "jpg", fallback: "rails.png", size: "50x30" %><%= order_item.item.name %></td>
+  <td><%= order_item.price.to_s(:delimited) %></td>
   <td><%= order_item.amount %></td>
-  <td><%= order_item.subtotal %></td>
+  <td><%= order_item.subtotal.to_s(:delimited) %></td>
 </tr>

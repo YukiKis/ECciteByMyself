@@ -26,6 +26,7 @@ RSpec.describe "Admin::Orders", type: :system do
       @order1.how_to_pay = 0
       @order1.total_price = @order1.set_total_price
       @order1.status = 0
+      @order1.created_at = Time.current
       @order1.save
       
       @order2 = customer2.orders.new
@@ -37,6 +38,7 @@ RSpec.describe "Admin::Orders", type: :system do
       @order2.how_to_pay = 1
       @order2.total_price = @order2.set_total_price
       @order2.status = 0
+      @order2.created_at = Time.current.yesterday
       @order2.save
       
       visit new_admin_session_path
@@ -64,6 +66,12 @@ RSpec.describe "Admin::Orders", type: :system do
           expect(page).to have_content order.item_count
           expect(page).to have_content order.status
         end
+      end
+      it "has only today's order when from top's link" do
+        visit admin_top_path
+        click_link "order-today", href: admin_orders_today_path
+        expect(page).to have_content @order1.customer.full_name
+        expect(page).to have_no_content @order2.customer.full_name        
       end
     end
     context "on admin_order_show page" do
@@ -114,7 +122,7 @@ RSpec.describe "Admin::Orders", type: :system do
         expect(page).to have_content @order1.deliver_fee
       end
       it "has '請求金額合計'" do
-        expect(page).to have_content @order1.get_whole_total_price
+        expect(page).to have_content @order1.get_whole_total_price.to_s(:delimited)
       end
       it "changes order_status" do
         select "発送済み", from: "order[status]"

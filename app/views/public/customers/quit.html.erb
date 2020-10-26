@@ -1,12 +1,21 @@
 <div class="col-md-6 col-md-offset-3">
-  <h2>本当に退会しますか？</h2>
-  <p>
+  <h3 class="text-center" style="margin-top: 100px;"><b>本当に退会しますか？</b></h3>
+  <p class="text-center" style="margin-top: 50px; font-size: 18px;">
     退会すると、会員登録情報や<br>
     これまでの購入履歴が閲覧できなくなります。<br>
     退会する場合は、「退会する」をクリックしてください。
   </p>
-  <%= link_to "退会しない", customers_path, class: "btn btn-primary" %>
-  <%= form_with model: @customer, url: out_path, local: true do |f| %>
-    <%= f.hidden_field :is_active, value: false %>
-    <%= f.submit "退会する", class: "btn btn-danger", data: {confirm: "本当に退会しますか？" } %>
-  <% end %>
+
+  <div class="row" style="margin-top: 50px;">
+    <div class="col-md-3 col-md-offset-2">
+      <%= link_to "退会しない", customers_path, class: "btn btn-primary", style: "width: 120px;" %>
+    </div>
+    <div class="col-md-3 col-md-offset-2">
+      <%= form_with model: @customer, url: out_path, local: true do |f| %>
+        <%= f.hidden_field :is_active, value: false %>
+        <%#= f.hidden_field :email, value: "DELETED_#{ Time.now.to_s.gsub(" ", "") }_#{ @customer.email }"%>
+        <%= f.submit "退会する", class: "btn btn-danger", data: {confirm: "本当に退会しますか？" }, style: "width: 120px;" %>
+      <% end %>
+    </div>
+  </div>
+</div>

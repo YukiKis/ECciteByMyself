@@ -1,80 +1,85 @@
 <div class="col-md-10">
   <%= render "layouts/error", resource: @customer %>
-  <h3><span>登録情報編集</span></h3>
-
+  <h3 style="margin-left: 50px;"><span>登録情報編集</span></h3>
   <%= form_with model: @customer, url: customers_path, local: true do |f| %>
+
     <div class="row">
-      <div class="col-md-4">
-        <%= f.label :last_name, "名前" %>
+      <div class="col-md-4 form-group">
+        <%= f.label :last_name, "名前", class: "control-label" %>
       </div>
-      <div class="col-md-4">
-        <%= f.label :last_name, "(姓)" %>
-        <%= f.text_field :last_name %>
+      <div class="col-md-4 form-group form-inline">
+        <%= f.label :last_name, "(姓)", class: "control-label last-name-label" %>
+        <%= f.text_field :last_name, class: "form-control" %>
       </div>
-      <div class="col-md-4">
-        <%= f.label :first_name, "(名)"%>
-        <%= f.text_field :first_name %>
+      <div class="col-md-4 form-group form-inline">
+        <%= f.label :first_name, "(名)", class: "control-label first-name-label" %>
+        <%= f.text_field :first_name, class: "form-control" %>
       </div>
-    </div>    
+    </div>
     
     <div class="row">
-      <div class="col-md-4">
-        <%= f.label :last_name_kana, "フリガナ" %>
+      <div class="col-md-4 form-group">
+        <%= f.label :last_name_kana, "フリガナ", class: "control-label " %>
       </div>
-      <div class="col-md-4">
-        <%= f.label :last_name_kana, "(セイ)" %>
-        <%= f.text_field :last_name_kana %>
+      <div class="col-md-4 form-group form-inline">
+        <%= f.label :last_name_kana, "(セイ)", class: "control-label" %>
+        <%= f.text_field :last_name_kana, class: "form-control" %>
       </div>
-      <div class="col-md-4">
-        <%= f.label :first_name_kana_kana, "(メイ)"%>
-        <%= f.text_field :first_name_kana %>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-4">
-        <%= f.label :email, "メールアドレス" %>
-      </div>
-      <div class="col-md-4">
-        <%= f.text_field :email %>
-      </div>
-      <div class="col-md-4">
+      <div class="col-md-4 form-group form-inline">
+        <%= f.label :first_name_kana, "(メイ)", class: "control-label"%>
+        <%= f.text_field :first_name_kana, class: "form-control" %>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-md-4">
-        <%= f.label :postcode, "郵便番号(ハイフンなし)" %>
+      <div class="col-md-4 form-group">
+        <%= f.label :email, "メールアドレス", class: "control-label" %>
       </div>
-      <div class="col-md-4">
-        <%= f.text_field :postcode %>
+      <div class="col-md-4 form-group form-inline">
+        <%= f.text_field :email, class: "form-control margin-fixed" %>
       </div>
       <div class="col-md-4">
       </div>
     </div>
 
     <div class="row">
-      <div class="col-md-4">
-        <%= f.label :address, "住所" %>
+      <div class="col-md-4 form-group">
+        <%= f.label :postcode, "郵便番号(ハイフンなし)", class: "control-label" %>
+      </div>
+      <div class="col-md-4 form-group form-inline">
+        <%= f.text_field :postcode, class: "form-control margin-fixed" %>
       </div>
       <div class="col-md-4">
-        <%= f.text_field :address %>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-md-4">
-        <%= f.label :tel, "電話番号(ハイフンなし)" %>
+      <div class="col-md-4 form-group">
+        <%= f.label :address, "住所", class: "control-label" %>
       </div>
-      <div class="col-md-4">
-        <%= f.text_field :tel %>
-      </div>
-      <div class="col-md-4">
+      <div class="col-md-8 form-group">
+        <%= f.text_field :address, class: "form-control margin-fixed" %>
       </div>
     </div>
 
-  <%= f.submit "編集内容を保存する", class: "btn btn-primary"%>
+    <div class="row">
+      <div class="col-md-4 form-group">
+        <%= f.label :tel, "電話番号(ハイフンなし)", class: "control-label" %>
+      </div>
+      <div class="col-md-4 form-group form-inline">
+        <%= f.text_field :tel, class: "form-control margin-fixed" %>
+      </div>
+      <div class="col-md-4">
+    </div>
+
+    <div class="row" style="margin-top: 50px;">
+      <div class="col-md-8 text-center">
+        <%= f.submit "編集内容を保存する", class: "btn btn-primary", style: "width: 300px;"%>
+      </div>
+      <div class="col-md-4 text-center">
+        <%= link_to "退会する", quit_path, class: "btn btn-danger" %>
+      </div>
+    </div>
+
   <% end %>
-
-  <%= link_to "退会する", quit_path, class: "btn btn-danger" %>
 </div>

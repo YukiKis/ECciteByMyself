@@ -1,53 +1,59 @@
+<% provide(:title, "注文情報確認") %>
 <div class="col-md-12">
-  <% unless @order.valid? %>
-    <%= render "layouts/error", resource: @order %>
-  <% end %>
-  <h3>注文情報確認</h3>
+  <%# <% unless @order.valid? %>
+    <%#= render "layouts/error", resource: @order %>
+  <%# end %>
+  <h3 style="margin-left: 50px;"><span>注文情報確認</span></h3>
   <div class="row">
-    <div class="col-md-9">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>商品名</th><th>単価(税込)</th><th>数量</th><th>小計</th>
-          </tr>
+    <div class="col-md-8">
+      <table class="table table-bordered">
+        <thead class="row">
+          <th class="col-md-4">商品名</th><th class="col-md-2">単価(税込)</th><th class="col-md-2">数量</th><th class="col-md-2">小計</th>
         </thead>
         <tbody>
           <tr>
-            <%= render @order_items %>
+            <%= render partial: "public/order_items/order_item", collection: @order_items %>
           </tr>
         </tbody>
       </table>
     </div>
     
-    <div class="col-md-3">
-      <table class="table">
-        <tr><th>送料</th><td><%= @order.deliver_fee %></td></tr>
-        <tr><th>商品合計</th><td><%= @order.total_price %></td></tr>
-        <tr><th>請求金額</th><td><%= @order.get_whole_total_price %></td></tr>
+    <div class="col-md-3 col-md-offset-1">
+      <table class="table table-bordered">
+        <tr><th>送料</th><td><%= @order.deliver_fee.to_s(:delimited) %></td></tr>
+        <tr><th>商品合計</th><td><%= @total_price.to_s(:delimited) %></td></tr>
+        <tr><th>請求金額</th><td><%= (@total_price + @order.deliver_fee).to_s(:delimited) %></td></tr>
       </table>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-2">
-      <h3>支払方法</h3>
+      <h4><b>支払方法</b></h4>
     </div>
     <div class="col-md-10">
-      <h3 style="font-size: 15px;"><%= @order.how_to_pay %></h3>
+      <h4><%= @how_to_pay %></h4>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-2">
-      <h3>お届け先</h3>
+      <h4><b>お届け先</b></h4>
     </div>
     <div class="col-md-10">
-      <h3 style="font-size: 15px;"><%= @order.deliver_show %></h3>
+      <h4><%= session[:postcode] %>&nbsp;<%= session[:address] %><br><%= session[:name] %></h4>
     </div>
   </div>
 
-  <%= form_with model: @order, local: true do |f| %>
-    <%= f.submit "購入を確定する", class: "btn btn-primary" %>
+<div class="text-center" style="margin-top: 50px;">
+  <%= form_with model: @order, method: :post, local: true do |f| %>
+    <%= f.hidden_field :how_to_pay, value: @how_to_pay%>
+    <%= f.hidden_field :address_select, value: @address_select%>
+    <%= f.hidden_field :postcode, value: @postcode %>
+    <%= f.hidden_field :address, value: @address %>
+    <%= f.hidden_field :name, value: @name %>
+    <%= f.submit "購入を確定する", class: "btn btn-success" %>
   <% end %>
+</div>
 
 </div>

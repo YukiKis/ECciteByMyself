@@ -50,10 +50,11 @@ RSpec.describe "Admin::Items", type: :system do
         expect(page).to have_content "商品新規登録"
       end
       it "has image for items" do
+        expect(page).to have_css ".image"
       end
-      # it "has button to select image" do
-      #   expect(page).to have_button "{}"
-      # end
+      it "has button to select image" do
+        expect(page).to have_button "item[image]"
+      end
       it "has field for name" do
         expect(page).to have_content "商品名"
         expect(page).to have_field "item[name]"
@@ -75,7 +76,7 @@ RSpec.describe "Admin::Items", type: :system do
         expect(page).to have_field "item[is_active]"
       end
       it "succeeds to make a new item" do
-        # select item image
+        attach_file "item[image]", "#{Rails.root}/spec/factories/rails.png"
         fill_in "item[name]", with: "チョコケーキ"
         fill_in "item[description]", with: "新作です！"
         select "ケーキ", from: "item[category]"
@@ -98,9 +99,9 @@ RSpec.describe "Admin::Items", type: :system do
       it "has '商品詳細'" do
         expect(page).to have_content "商品詳細"
       end
-      # it "has image for item" do
-        
-      # end
+      it "has image for item" do
+        expect(page).to have_css ".image"  
+      end
       it "has name for item" do
         expect(page).to have_content "商品名"
         expect(page).to have_content item1.name
@@ -135,11 +136,11 @@ RSpec.describe "Admin::Items", type: :system do
         expect(page).to have_content "商品編集"
       end
       it "has image for items" do
-        #
+        expect(page).to have_css ".image"
       end
-      # it "has button to select image" do
-      #   expect(page).to have_button "{}"
-      # end
+      it "has button to select image" do
+        expect(page).to have_button "item[image]"
+      end
       it "has field for name" do
         expect(page).to have_content "商品名"
         expect(page).to have_field "item[name]"
@@ -161,7 +162,7 @@ RSpec.describe "Admin::Items", type: :system do
         expect(page).to have_field "item[is_active]"
       end
       it "succeeds to edit a item" do
-        # select item image
+        attach_file "item[image]", "#{Rails.root}/spec/factories/rails.png"
         fill_in "item[name]", with: "バニラケーキ"
         fill_in "item[description]", with: "もう古いです！"
         select "ケーキ", from: "item[category]"

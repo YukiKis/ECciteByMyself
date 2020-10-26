@@ -1,6 +1,6 @@
 class Admin::ItemsController < ApplicationController
   def index
-    @items = Item.all
+    @items = Item.page(params[:page])
   end
 
   def show
@@ -27,15 +27,17 @@ class Admin::ItemsController < ApplicationController
   end
 
   def create
+    # imageMagickがないため？　エラー
     params = item_params
-    params[:category] = Category.find_by(name: item_params[:category])
-    params[:image_id] = "IMAGE"
+    params[:category] = Category.find_by(name: item_params[:name])
     @item = Item.new(params)
+    @item.category = Category.find_by(name: item_params[:category])
     if @item.save
       redirect_to admin_items_path
     else
       render "new"
     end
+    debugger
   end
 
   private

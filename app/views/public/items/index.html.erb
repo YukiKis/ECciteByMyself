@@ -1,3 +1,4 @@
+<% provide(:title, "商品一覧") %>
 <div class="col-md-12">
   <div class="row">
   
@@ -6,10 +7,11 @@
     </div>
 
     <div class="col-md-9">
-      <h3>商品一覧<small>(全<%= @items.count %>件)</small></h3>
+      <h3><b><%= @title %>一覧</b><small>(全<%= @items.count %>件)</small></h3>
         <div class="row">
           <%= render @items %>
         </div>
     </div>
   </div>
+  <%= paginate @items %>
 </div>

@@ -1,3 +1,22 @@
 // Place all the styles related to the admin/orders controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.order-index-title{
+  margin-bottom: 30px;
+}
+
+.order-show-title{
+  margin-left: 100px;
+}
+div.order-item-info-row{
+  position: relative;
+  div.order-pay-info{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    table.order-pay-info-table{
+      font-size: 18px;
+    }
+  }
+}

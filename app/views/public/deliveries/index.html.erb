@@ -1,30 +1,62 @@
 <div class="col-md-12">
   <h3><span>配送先登録/一覧</span></h3>
+  <%= render "layouts/error", resource: @delivery_new %>
   <%= form_with model: @delivery_new, local: true do |f| %>
-    <div class="form-group">
-    <%= f.label :postcode, "郵便番号(ハイフンなし)"%>
-    <%= f.text_field :postcode%>
+    <div class="row">
+      <div class="col-md-2">
+        <div class="form-group">
+          <%= f.label :postcode, "郵便番号(ハイフンなし)", class: "control-label"%>
+        </div>
+      </div>
+      <div class="col-md-10">
+        <div class="form-group form-inline">
+          <%= f.text_field :postcode, class: "form-control" %>
+        </div>
+      </div>
     </div>
 
-    <div class="form-grouP">
-      <%= f.label :address, "住所" %>
-      <%= f.text_field :address %>    
+    <div class="row">
+      <div class="col-md-2">
+        <div class="form-group">
+          <%= f.label :address, "住所", class: "control-label" %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.text_field :address, class: "form-control" %>    
+        </div>
+      </div>
+      </div class="col-md-4">
+      </div>
     </div>
 
-    <div class="form-group">
-      <%= f.label :name, "宛名" %>
-      <%= f.text_field :name %>
+    <div class="row">
+      <div class="col-md-2">
+        <div class="form-group">
+          <%= f.label :name, "宛名", class: "control-label" %>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="form-group form-inline">
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <%= f.submit "登録する", class: "btn btn-success btn-block" %>
+      </div>
     </div>
-    <%= f.submit "登録する", class: "btn btn-success" %>
   <% end %>
 
   <div class="row">
-    <div class="col-md-10">
-      <table class="table">
-        <thead>
-          <tr><th>郵便番号</th><th>住所</th><th>宛名</th><th></th></tr>
+    <div class="col-md-8">
+      <table class="table table-bordered">
+        <thead class="row">
+          <th class="col-md-2">郵便番号</th>
+          <th class="col-md-4">住所</th>
+          <th class="col-md-2">宛名</th>
+          <th class="col-md-4"></th>
         </thead>
-        <tbody>
+        <tbody class="delivery-table">
           <%= render @deliveries %>
         </tbody>
       </table>

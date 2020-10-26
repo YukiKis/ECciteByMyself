@@ -1,6 +1,11 @@
+<header>
 <nav class="navbar navbar-default">
   <div class="navbar-header">
-    <%= link_to "LOGO", root_path %>
+    <% if admin_signed_in? %>
+      <%= link_to "LOGO", admin_top_path %>
+    <% else %>
+      <%= link_to "LOGO", root_path %>
+    <% end %>
     <button type="button", class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-content">
       <span class="sr-only">Toggle navigation</span>
       <span class="icon-bar"></span>
@@ -22,9 +27,9 @@
         <li><%= link_to "ジャンル一覧", new_admin_category_path %></li>
         <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
         <li>
-          <%= form_with scope: :search, url: admin_search_path, local: true do |f| %>
-            <%= f.text_field :keyword, placeholder: "検索ワード", class: "form-inline", style: "margin-top: 8px; padding: 5px 15px; line-height: 20px;" %>
-            <%= f.submit "SEACH!", class: "btn", style: "padding: 10px 15px; line-height 20px; margin-right: 5px;" %>
+          <%= form_with scope: :search, url: admin_search_path, class: "form-inline", local: true do |f| %>
+            <%= f.text_field :keyword, placeholder: "Search", class: "form-control", style: "margin-top: 8px; padding: 5px 15px; line-height: 20px;" %>
+            <%= f.submit "SEACH!", class: "btn", style: "padding: 10px 15px; line-height 20px; margin-right: 5px; margin-top: 5px;" %>
           <% end %>
         </li>
       <% else %>
@@ -36,3 +41,4 @@
     </ul>
   </div>
 </nav>
+</header>

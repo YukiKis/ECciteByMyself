@@ -1,21 +1,26 @@
+<% provide(:title, "#{ @item.name }") %>
 <div class="col-md-10 col-md-offset-1">
-  <h3><span>商品詳細</span></h3>
+  <h3 class="item-show-title"><span>商品詳細</span></h3>
 
   <div class="row">
     <div class="col-md-4">
-      <%= attachment_image_tag @item, :image, :fill, 300, 300, format: "jpg", fallback: "noimage.jpg", size: "300x300" %>
+      <%= attachment_image_tag @item, :image, format: "jpg", fallback: "noimage.jpg", size: "250x200" %>
     </div>
 
     <div class="col-md-8">
-      <table class="table table-noborder"></tr>
+      <table class="table no-border no-color-th"></tr>
         <tr><th>商品名</th><td><%= @item.name %></td></tr>
         <tr><th>商品説明</th><td><%= @item.description %></td></tr>
         <tr><th>ジャンル</th><td><%= @item.category.name %></td></tr>
-        <tr><th>税込価格（税抜価格）</th><td><%= @item.price_with_tax %>（<%= @item.price %>）円</td></tr>
+        <tr><th>税込価格（税抜価格）</th><td><%= @item.price_with_tax.to_s(:delimited) %>（<%= @item.price.to_s(:delimited) %>）円</td></tr>
         <tr><th>販売ステータス</th><td><%= @item.status %></td></tr>
       </table>
     </div>
   </div>
 
-  <%= link_to "編集する", edit_admin_item_path(@item), class: "btn btn-primary" %>
+  <div class="row with-margin-top">
+    <div class="col-md-12 text-right">
+      <%= link_to "編集する", edit_admin_item_path(@item), class: "btn btn-primary btn-lg" %>
+    </div>
+  </div>
 </div>

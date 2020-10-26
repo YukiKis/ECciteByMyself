@@ -16,15 +16,53 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-.noborder{ 
-  border-top: 0px !important;
-  border-bottom: 0px !important;
+table {
+  &.no-border tr > th {
+    border: 0px;
+  }
+  &.no-border tr > td {
+    border: 0px;
+  }
 }
 
-h3 span{
-  background-color: #D3D3D3;
+h3 span {
+  background-color: #d3d3d3;
 }
 
-table thead{ 
+table thead {
   background-color: #eeeeee;
+}
+
+header {
+  a {
+    text-decoration: none;
+  }
+}
+
+a {
+  text-decoration: underline;
+  &.btn {
+    text-decoration: none;
+  }
+}
+
+table.no-color-th th {
+  background-color: #ffffff;
+}
+
+.item-show-title {
+  margin-bottom: 100px;
+}
+
+div.with-margin-top {
+  margin-top: 100px;
+}
+
+.registration-postcode-field,
+.registration-tel-field {
+  margin-right: 0;
+}
+
+.session-email-field {
+  margin-right: 0;
 }

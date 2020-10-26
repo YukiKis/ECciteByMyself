@@ -25,4 +25,16 @@ $(function(){
     }
     reader.readAsDataURL(e.target.files[0]);
   });
+
+  $("input[name='order[address_select]']").change(function(){
+    if($("#order_address_select_3").prop("checked")){
+      $("#order_deliver_postcode").prop("disabled", false);
+      $("#order_deliver_address").prop("disabled", false);
+      $("#order_deliver_name").prop("disabled", false);
+    }else{
+      $("#order_deliver_postcode").prop("disabled", true);
+      $("#order_deliver_address").prop("disabled", true);
+      $("#order_deliver_name").prop("disabled", true);
+    }
+  })
 });

@@ -56,6 +56,10 @@ Item.create([
   { category_id: 4, name: "アイスキャンディ", image_id: "Image", description: "夏の暑さに", price: 200 }
 ])
 
+20.times do |n|
+  Item.create({ category_id: 1, name: "ケーキ#{n}", image_id: "Image", description: "いちおし！", price: 300})
+end
+
 CartItem.create([
   { item_id: 1, customer_id: 1, amount: 3},
   { item_id: 2, customer_id: 1, amount: 2},

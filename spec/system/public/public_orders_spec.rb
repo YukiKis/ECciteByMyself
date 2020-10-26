@@ -28,8 +28,23 @@ RSpec.describe "Public::Orders", type: :system do
         expect(page).to have_field "order[how_to_pay]", with: "銀行振込" 
       end
       it "has radio-button for where to deliver" do
-        # expect(page).to have_content "お届け先"
-        # expect(page).to have_
+        expect(page).to have_content "お届け先"
+        expect(page).to have_field "ご自身の住所"
+        expect(page).to have_field "登録済み住所から選択"
+        expect(page).to have_field "新しいお届け先"
+      end
+      it "has address info for current_customer" do
+        expect(page).to have_content customer1.postcode
+        expect(page).to have_content customer1.address
+        expect(page).to have_content customer1.full_name
+      end
+      it "has select box for registered address" do
+        expect(page).to have_select("order_address_where", options: Delivery.for_select(customer1))
+      end
+      it "has fields for adding new deliver place" do
+        # expect(page).to have_field "order_deliver_postcode", with: 
+        # expect(page).to have_field "order_deliver_address"
+        # expect(page).to have_field "order_deliver_name"
       end
       it "has button to order-log page" do
         expect(page).to have_button "確認画面へ進む"
@@ -71,13 +86,13 @@ RSpec.describe "Public::Orders", type: :system do
       it "has info for order_items" do
         @order.order_items.each do |order_item|
           expect(page).to have_content order_item.item.name
-          expect(page).to have_content order_item.price
+          expect(page).to have_content order_item.price.to_s(:delimited)
           expect(page).to have_content order_item.amount
-          expect(page).to have_content order_item.subtotal
+          expect(page).to have_content order_item.subtotal.to_s(:delimited)
         end
         expect(page).to have_content @order.deliver_fee
-        expect(page).to have_content @order.total_price
-        expect(page).to have_content @order.get_whole_total_price
+        expect(page).to have_content @order.total_price.to_s(:delimited)
+        expect(page).to have_content @order.get_whole_total_price.to_s(:delimited)
       end
       it "has info for how_to_pay" do
         expect(page).to have_content "支払方法"
